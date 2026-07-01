@@ -62,3 +62,12 @@ and carries a pill-shaped twin holder sized for 72 mm bottle bodies with
 | **Print notes** | ≥4 walls, 30–40% infill. Supports under the arm/web on the back half. |
 
 ---
+
+## License
+
+[![License: CC BY-NC 4.0](https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc/4.0/)
+
+All designs in this repository are licensed under
+[Creative Commons Attribution-NonCommercial 4.0 International](LICENSE)
+(CC BY-NC 4.0). You are free to share and adapt them, provided you give
+credit and do **not** use them — or any derivatives — commercially.
