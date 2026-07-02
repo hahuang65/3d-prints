@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham Tunnel Tray — Corrected Mounting Options</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --surface-elevated: #fffdf5;
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --accent: #1a6b8a;
+  --accent-dim: rgba(26, 107, 138, 0.08);
+  --node-a: #1a6b8a;
+  --node-a-dim: rgba(26, 107, 138, 0.10);
+  --node-b: #7a5a2a;
+  --node-b-dim: rgba(122, 90, 42, 0.10);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.10);
+  --node-d: #8a3a4a;
+  --node-d-dim: rgba(138, 58, 74, 0.10);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+body {
+  font-family: var(--font-body); background: var(--bg);
+  padding: 32px; max-width: 900px; margin: 0 auto;
+  color: var(--text); line-height: 1.6;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.3rem; margin-top: 32px; color: var(--accent); }
+h3 { font-size: 1.05rem; margin-top: 20px; }
+.sketch {
+  background: var(--surface); border: 1.5px solid var(--blueprint-line-strong);
+  border-radius: 8px; padding: 20px; margin: 16px 0; overflow: hidden;
+}
+.sketch svg { width: 100%; height: auto; display: block; }
+.callout {
+  background: var(--accent-dim); border: 1px solid var(--blueprint-line-strong);
+  border-radius: 6px; padding: 16px 20px; margin: 16px 0;
+}
+.callout strong { color: var(--accent); }
+code { font-family: var(--font-mono); background: var(--accent-dim); padding: 1px 5px; border-radius: 3px; }
+.option-card {
+  background: var(--surface); border: 1px solid var(--blueprint-line);
+  border-radius: 8px; padding: 20px 24px; margin: 16px 0;
+  border-left: 3px solid var(--node-a);
+}
+.option-card--b { border-left-color: var(--node-b); }
+.option-card--c { border-left-color: var(--node-c); }
+.option-card--d { border-left-color: var(--node-d); }
+.tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500;
+  padding: 2px 7px; border-radius: 3px; margin: 2px;
+}
+.tag--a { background: var(--node-a-dim); color: var(--node-a); }
+.tag--b { background: var(--node-b-dim); color: var(--node-b); }
+.tag--c { background: var(--node-c-dim); color: var(--node-c); }
+.tag--d { background: var(--node-d-dim); color: var(--node-d); }
+</style>
+</head>
+<body>
+
+<h1>OK — wrong assumption, let's re-aim</h1>
+
+<p>
+  I assumed the dash lower edge sits close to the tunnel top, leaving a thin horizontal slot.
+  You're telling me it's the opposite: the dash is <strong>higher</strong>, overhangs the tunnel,
+  and there's a vertical gap between the tunnel top and the dash underside. That invalidates
+  the tongue idea entirely.
+</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 480 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- What I thought -->
+    <text x="120" y="20" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-dim)" text-decoration="line-through">What I imagined</text>
+    <text x="360" y="20" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--node-c)">What your car actually looks like</text>
+
+    <!-- Wrong -->
+    <rect x="30" y="80" width="20" height="90" rx="2" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.2"/>
+    <text x="40" y="130" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-a)" transform="rotate(-90,40,130)">dash</text>
+    <rect x="60" y="155" width="120" height="20" rx="3" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.2"/>
+    <text x="120" y="169" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-b)">tunnel</text>
+    <!-- Wrong: small gap -->
+    <rect x="55" y="143" width="25" height="12" rx="2" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1"/>
+    <text x="67" y="152" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-c)">tongue</text>
+    <path d="M30,140 L180,140" stroke="var(--node-d)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="185" y="144" font-family="var(--font-mono)" font-size="6" fill="var(--node-d)">(small gap I assumed)</text>
+
+    <!-- Vertical divider -->
+    <line x1="240" y1="10" x2="240" y2="195" stroke="var(--blueprint-line)" stroke-width="1.5"/>
+
+    <!-- Actual -->
+    <rect x="270" y="40" width="20" height="130" rx="2" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.2"/>
+    <text x="280" y="110" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-a)" transform="rotate(-90,280,110)">dash (higher)</text>
+
+    <!-- Dash overhang -->
+    <rect x="290" y="40" width="60" height="15" rx="2" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1"/>
+    <text x="320" y="52" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-a)">overhang</text>
+
+    <rect x="270" y="160" width="160" height="20" rx="3" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.2"/>
+    <text x="350" y="174" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-b)">tunnel</text>
+
+    <!-- Big gap -->
+    <path d="M310,55 L310,160" stroke="#d4a017" stroke-width="1.2" marker-start="url(#arrowdown2)" marker-end="url(#arrowup2)"/>
+    <text x="320" y="105" font-family="var(--font-mono)" font-size="6" fill="#d4a017">big vertical gap — no dash capture possible</text>
+
+    <!-- Tray where it would sit -->
+    <rect x="300" y="135" width="90" height="25" rx="3" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5" stroke-dasharray="4,3"/>
+    <text x="345" y="152" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-c)">tray here</text>
+
+    <defs>
+      <marker id="arrowdown2" markerWidth="6" markerHeight="4" refX="3" refY="4" orient="auto">
+        <path d="M0,0 L3,4 L6,0" fill="#d4a017" stroke="none"/>
+      </marker>
+      <marker id="arrowup2" markerWidth="6" markerHeight="4" refX="3" refY="0" orient="auto">
+        <path d="M0,4 L3,0 L6,4" fill="#d4a017" stroke="none"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<h2>What actually works now</h2>
+<p>With the dash out of reach, the tray has to be secured entirely to the tunnel itself. Here are the real options, re-ranked:</p>
+
+<!-- Option 1 -->
+<div class="option-card">
+  <h3>🥇 Tunnel-edge C-clamp <span class="tag tag--c">Best if edges are accessible</span></h3>
+  <p>The tray has downward flanges that wrap around the tunnel cover's side edges, tightened with M4 screws. No adhesive, no dash needed, pure mechanical retention.</p>
+  <p><strong>You need to check:</strong> Are the tunnel cover's side edges visible/exposed? Or are they hidden under carpet or sill trim?</p>
+  <p style="margin-top:8px;">
+    <span class="tag tag--a">No adhesive</span>
+    <span class="tag tag--a">Fully reversible</span>
+    <span class="tag tag--a">Survives track heat</span>
+  </p>
+</div>
+
+<!-- Option 2 -->
+<div class="option-card option-card--b">
+  <h3>🥇 Dual Lock + low-profile <span class="tag tag--b">Always works</span></h3>
+  <p>3M Dual Lock on the tray floor, pressed onto the tunnel. The <strong>key insight:</strong> if the tray walls are kept low (15–20 mm) with a chamfered/tapered front edge, knees slide over it rather than hooking under it — dramatically reducing peel risk.</p>
+  <p>The lid (Option B) also acts as a smooth, sloped surface that deflects knees instead of catching them. A <strong>front lip that curves upward</strong> into the void under the dash could also serve as a visual/mechanical "stop" if someone's knee does push the tray rearward.</p>
+  <p style="margin-top:8px;">
+    <span class="tag tag--a">Simple print</span>
+    <span class="tag tag--b">Shear is strong</span>
+    <span class="tag tag--b">Peel mitigated by low profile</span>
+  </p>
+</div>
+
+<!-- Option 3 -->
+<div class="option-card option-card--c">
+  <h3>Hybrid: Dual Lock + side-wall adhesive <span class="tag tag--c">Extra grip</span></h3>
+  <p>The tray isn't just a flat dish — it has side walls that extend down the <em>sides</em> of the tunnel, with additional Dual Lock or VHB patches on the vertical faces. Peel loads on the top surface become shear loads on the side patches.</p>
+  <p style="margin-top:8px;">
+    <span class="tag tag--b">More surface area</span>
+    <span class="tag tag--b">Converts peel → shear</span>
+  </p>
+</div>
+
+<!-- Option 4 -->
+<div class="option-card option-card--d">
+  <h3>Hook-and-stop: use the dash overhang differently <span class="tag tag--d">If geometry allows</span></h3>
+  <p>Instead of a tongue <em>under</em> the dash, the tray has a <strong>vertical front wall</strong> that rises up into the void. If the tray is bumped upward (peel event), the front wall contacts the underside of the dash overhang <strong>before</strong> the Dual Lock peels. The dash acts as a rotation stop.</p>
+  <p style="color:var(--text-dim);font-size:0.9rem;">This only works if (a) the tray sits far enough forward that its front wall is under the overhang, and (b) the overhang is low enough that the wall reaches it without the tray being comically tall.</p>
+  <p style="margin-top:8px;">
+    <span class="tag tag--b">Clever anti-peel</span>
+    <span class="tag tag--d">Needs overhang height check</span>
+  </p>
+</div>
+
+<h2>My money is on the C-clamp</h2>
+<p>It's the most Caterham-appropriate solution — mechanical, no-nonsense, doesn't rely on adhesives that soften in a hot transmission tunnel. Let me know if you can see/access the tunnel cover's side edges and I'll sketch the clamp detail properly.</p>
+
+<p style="margin-top:32px;font-size:1.05rem;font-weight:500;">Quick question: are your tunnel edges exposed, or are they buried under the carpet/side trim?</p>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham Tunnel Tray — Full Design Proposal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --surface-elevated: #fffdf5;
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --text-faint: #8a9aaa;
+  --accent: #1a6b8a;
+  --accent-dim: rgba(26, 107, 138, 0.08);
+  --node-a: #1a6b8a;
+  --node-a-dim: rgba(26, 107, 138, 0.10);
+  --node-b: #7a5a2a;
+  --node-b-dim: rgba(122, 90, 42, 0.10);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.10);
+  --node-d: #8a3a4a;
+  --node-d-dim: rgba(138, 58, 74, 0.10);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+body {
+  font-family: var(--font-body); background: var(--bg);
+  padding: 32px; max-width: 860px; margin: 0 auto;
+  color: var(--text); line-height: 1.6;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.3rem; margin-top: 32px; color: var(--node-a); }
+.sketch {
+  background: var(--surface); border: 1.5px solid var(--blueprint-line-strong);
+  border-radius: 8px; padding: 20px; margin: 16px 0; overflow: hidden;
+}
+.sketch svg { width: 100%; height: auto; display: block; }
+.callout {
+  background: var(--accent-dim); border: 1px solid var(--blueprint-line-strong);
+  border-radius: 6px; padding: 16px 20px; margin: 16px 0;
+}
+.card-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0;
+}
+@media (max-width: 640px) { .card-grid { grid-template-columns: 1fr; } }
+.card {
+  background: var(--surface); border: 1px solid var(--blueprint-line);
+  border-radius: 8px; padding: 16px 20px;
+}
+.card h3 { font-size: 0.95rem; margin-bottom: 6px; }
+code { font-family: var(--font-mono); background: var(--accent-dim); padding: 1px 5px; border-radius: 3px; }
+.tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.6rem;
+  padding: 2px 7px; border-radius: 3px; margin: 2px;
+  background: var(--accent-dim); color: var(--accent);
+}
+</style>
+</head>
+<body>
+
+<h1>Where we're at — the full picture</h1>
+
+<p>Here's what the design looks like now that we've figured out the geometry:</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 460 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Firewall -->
+    <rect x="80" y="10" width="14" height="160" rx="2" fill="var(--node-d-dim)" stroke="var(--node-d)" stroke-width="1.5"/>
+    <text x="87" y="95" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)" transform="rotate(-90,87,95)">FIREWALL</text>
+
+    <!-- Tunnel -->
+    <rect x="94" y="148" width="320" height="22" rx="3" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.5"/>
+    <text x="260" y="163" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-b)">TUNNEL</text>
+
+    <!-- Dash overhang (ghosted) -->
+    <rect x="60" y="5" width="60" height="12" rx="2" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="90" y="15" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-a)">dash overhang</text>
+
+    <!-- TRAY ASSEMBLY -->
+    <!-- Tray base -->
+    <rect x="98" y="118" width="160" height="30" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5"/>
+    <text x="178" y="138" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-c)">TRAY BASE</text>
+
+    <!-- Lid -->
+    <rect x="98" y="105" width="160" height="13" rx="3" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="178" y="115" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-a)">lid (slide-on)</text>
+
+    <!-- Velcro on front wall -->
+    <rect x="93" y="118" width="6" height="30" rx="1" fill="#d4a017"/>
+    <text x="70" y="143" text-anchor="end" font-family="var(--font-mono)" font-size="6" fill="#b8860b">velcro → firewall</text>
+
+    <!-- Dual lock on floor -->
+    <circle cx="138" cy="148" r="3" fill="var(--node-d)"/>
+    <circle cx="178" cy="148" r="3" fill="var(--node-d)"/>
+    <circle cx="218" cy="148" r="3" fill="var(--node-d)"/>
+    <text x="248" y="146" font-family="var(--font-mono)" font-size="5" fill="var(--node-d)">Dual Lock patches on tunnel floor</text>
+
+    <!-- Shifter reference -->
+    <path d="M350,148 L350,100" stroke="var(--text-faint)" stroke-width="1.5"/>
+    <circle cx="350" cy="95" r="8" fill="none" stroke="var(--text-faint)" stroke-width="1.5"/>
+    <text x="350" y="93" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--text-faint)">shifter</text>
+    <text x="300" y="185" font-family="var(--font-mono)" font-size="5" fill="var(--text-faint)">[clearance to shifter: ? mm]</text>
+  </svg>
+</div>
+
+<div class="card-grid">
+  <div class="card">
+    <h3>✅ Mounting</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;">
+      <li>Velcro on the tray's <strong>front wall</strong> → presses against the firewall (locates + stops forward slide)</li>
+      <li>Dual Lock patches on the <strong>tray floor</strong> → tunnel top (lateral + rearward shear)</li>
+      <li>Gravity + tray footprint keeps it planted (no peel stress on any adhesive)</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>✅ Design direction</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;">
+      <li><strong>Option B</strong> — tray + lid</li>
+      <li>Lid keeps phone/keys from launching on track</li>
+      <li>Low side walls (~25 mm) tapered at the rear to deflect knees</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>📏 Needs measurement</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;">
+      <li>Tunnel width at firewall face</li>
+      <li>Tunnel width at shifter position</li>
+      <li>Distance: firewall face → shifter pivot centre</li>
+      <li>Firewall vertical height from tunnel to dash overhang</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>🎯 Lid mechanism — TBD</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;">
+      <li>Slide-on dovetail (no hardware)</li>
+      <li>Hinge with printed pin</li>
+      <li>Friction fit (simplest)</li>
+    </ul>
+  </div>
+</div>
+
+<h2>Lid question</h2>
+
+<p>Three ways to do the lid. Which appeals?</p>
+
+<ul>
+  <li><strong>Dovetail slide</strong> — the lid has dovetail rails on the sides that slide into matching grooves in the tray walls. No hardware, no rattles, lid can't fly off. Slides rearward to remove. You need ~50 mm of clearance behind the tray to slide it off.</li>
+  <li><strong>Friction fit</strong> — the lid sits on a ledge inside the tray with a slight interference fit, or uses small locating pegs. Simplest to print but might bounce loose on rough roads.</li>
+  <li><strong>Hinge + magnetic catch</strong> — a printed hinge at the front (near the firewall), with a small magnet or detent at the rear to keep it closed. More parts but feels premium.</li>
+</ul>
+
+<p style="margin-top:20px;font-size:1.05rem;font-weight:500;">Any instinct on the lid? And if you can grab those tunnel measurements whenever you're near the car, I can start drafting the OpenSCAD.</p>
+
+</body>
+</html>

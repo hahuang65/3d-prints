@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham Tunnel Tray — Corrected Geometry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --accent: #1a6b8a;
+  --node-a: #1a6b8a;
+  --node-a-dim: rgba(26, 107, 138, 0.10);
+  --node-b: #7a5a2a;
+  --node-b-dim: rgba(122, 90, 42, 0.10);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.10);
+  --node-d: #8a3a4a;
+  --node-d-dim: rgba(138, 58, 74, 0.10);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+body { font-family: 'DM Sans', sans-serif; background: var(--bg); padding: 32px; max-width: 860px; margin: 0 auto; color: var(--text); line-height: 1.6; }
+h1 { font-size: 1.8rem; }
+.sketch { background: var(--surface); border: 1.5px solid var(--blueprint-line-strong); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.sketch svg { width: 100%; height: auto; display: block; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+@media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+.card { background: var(--surface); border: 1px solid var(--blueprint-line); border-radius: 8px; padding: 16px 20px; }
+code { font-family: 'DM Mono', monospace; background: var(--accent-dim); padding: 1px 5px; border-radius: 3px; }
+.tag { display: inline-block; font-family: 'DM Mono', monospace; font-size: 0.6rem; padding: 2px 7px; border-radius: 3px; background: var(--node-a-dim); color: var(--node-a); }
+.dim { font-family: 'DM Mono', monospace; font-size: 0.85rem; color: var(--accent); }
+.callout { background: var(--node-a-dim); border: 1px solid var(--blueprint-line-strong); border-radius: 6px; padding: 16px 20px; margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<h1>Top view — to scale this time</h1>
+
+<p>Tunnel tapers from 8" at the firewall to 6" at the shifter over 9". Tray is 7" long × 6" wide, centered. Tube is at 6"–7.5" from left tunnel edge, extending 2.75" rearward from the firewall.</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 460 340" xmlns="http://www.w3.org/2000/svg">
+    <!-- Grid background (1" = 40 px) -->
+    <defs>
+      <pattern id="grid" patternUnits="userSpaceOnUse" width="40" height="40">
+        <path d="M40,0 L0,0 L0,40" fill="none" stroke="var(--blueprint-line)" stroke-width="0.5"/>
+      </pattern>
+    </defs>
+    <rect x="40" y="20" width="380" height="300" fill="url(#grid)"/>
+
+    <!-- Ruler marks every 1" -->
+    <g font-family="'DM Mono', monospace" font-size="7" fill="var(--text-faint)" text-anchor="middle">
+      <text x="80" y="15">0"</text>
+      <text x="120" y="15">1"</text>
+      <text x="160" y="15">2"</text>
+      <text x="200" y="15">3"</text>
+      <text x="240" y="15">4"</text>
+      <text x="280" y="15">5"</text>
+      <text x="320" y="15">6"</text>
+      <text x="360" y="15">7"</text>
+      <text x="400" y="15">8"</text>
+    </g>
+
+    <!-- Tunnel outline (tapered) -->
+    <!-- At firewall (top): 8" wide = x: 40 to 360 (320px for 8") -->
+    <!-- At shifter (bottom): 6" wide = x: 80 to 320 (240px for 6") -->
+    <!-- Length 9" = 360px -->
+    <polygon points="40,40 360,40 320,370 80,370" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.5"/>
+    <text x="200" y="380" text-anchor="middle" font-family="'DM Mono', monospace" font-size="8" fill="var(--node-b)">TUNNEL</text>
+
+    <!-- Firewall line -->
+    <line x1="40" y1="40" x2="360" y2="40" stroke="var(--node-d)" stroke-width="2"/>
+    <text x="200" y="32" text-anchor="middle" font-family="'DM Mono', monospace" font-size="8" fill="var(--node-d)">FIREWALL</text>
+
+    <!-- Tray: 6" wide, 7" long, centered -->
+    <!-- Centered at firewall: 1" to 7" = x: 80 to 320 (240px wide) -->
+    <!-- Length 7" = 280px -->
+    <rect x="80" y="44" width="240" height="280" rx="3" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="2"/>
+    <text x="200" y="160" text-anchor="middle" font-family="'DM Mono', monospace" font-size="10" fill="var(--node-c)" font-weight="600">TRAY</text>
+    <text x="200" y="175" text-anchor="middle" font-family="'DM Mono', monospace" font-size="7" fill="var(--node-c)">6" × 7"</text>
+
+    <!-- Tube: 1.5" wide, starts at 6" from left -->
+    <rect x="280" y="40" width="60" height="110" rx="4" fill="var(--node-d-dim)" stroke="var(--node-d)" stroke-width="1.5"/>
+    <text x="310" y="80" text-anchor="middle" font-family="'DM Mono', monospace" font-size="7" fill="var(--node-d)" font-weight="600">WIRING</text>
+    <text x="310" y="92" text-anchor="middle" font-family="'DM Mono', monospace" font-size="7" fill="var(--node-d)" font-weight="600">TUBE</text>
+    <text x="310" y="108" text-anchor="middle" font-family="'DM Mono', monospace" font-size="6" fill="var(--node-d)">2.75" deep</text>
+
+    <!-- Tube extends 2.75" = 110px from firewall -->
+    <line x1="280" y1="150" x2="340" y2="150" stroke="var(--node-d)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="350" y="105" font-family="'DM Mono', monospace" font-size="6" fill="var(--node-d)">2¾"</text>
+
+    <!-- The U-shaped notch in the tray -->
+    <rect x="275" y="44" width="45" height="110" rx="3" fill="var(--bg)" stroke="var(--node-d)" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="330" y="120" font-family="'DM Mono', monospace" font-size="7" fill="var(--node-d)">U-notch cutout</text>
+    <text x="330" y="132" font-family="'DM Mono', monospace" font-size="6" fill="var(--node-d)">(rectangular)</text>
+
+    <!-- Dimension arrows -->
+    <line x1="40" y1="405" x2="360" y2="405" stroke="var(--accent)" stroke-width="1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="200" y="420" text-anchor="middle" font-family="'DM Mono', monospace" font-size="9" fill="var(--accent)">8" at firewall</line>
+
+    <line x1="80" y1="395" x2="320" y2="395" stroke="var(--accent)" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="200" y="410" text-anchor="middle" font-family="'DM Mono', monospace" font-size="7" fill="var(--accent)">6" at shifter</text>
+
+    <line x1="365" y1="40" x2="365" y2="370" stroke="var(--accent)" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="385" y="205" text-anchor="middle" font-family="'DM Mono', monospace" font-size="9" fill="var(--accent)" transform="rotate(90,385,205)">9"</text>
+
+    <line x1="82" y1="44" x2="82" y2="324" stroke="var(--accent)" stroke-width="1" marker-start="url(#ar)" marker-end="url(#ar)"/>
+    <text x="68" y="185" text-anchor="middle" font-family="'DM Mono', monospace" font-size="9" fill="var(--accent)" transform="rotate(-90,68,185)">7" tray</text>
+
+    <defs>
+      <marker id="ar" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+        <path d="M0,0 L6,2 L0,4" fill="var(--accent)" stroke="none"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<p>The tube sits on the tunnel against the firewall and extends <strong>2.75" rearward</strong> before going up. The tray's notch clears it:</p>
+
+<div class="grid-2">
+  <div class="card">
+    <h3 style="color:var(--node-c)">📐 Tray (corrected)</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;line-height:1.8;">
+      <li>Width: <strong>6"</strong> (152 mm) — constant</li>
+      <li>Length: <strong>7"</strong> (178 mm)</li>
+      <li>Side walls: <strong>20 mm</strong> tall</li>
+      <li>Wall thickness: <strong>3 mm</strong></li>
+      <li>Floor thickness: <strong>3 mm</strong></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--node-d)">🔌 Notch</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;line-height:1.8;">
+      <li>Position: right-front corner</li>
+      <li>Width: <strong>~1.75"</strong> (44 mm) — comfortably clears 1.5" tube</li>
+      <li>Depth: <strong>2.75"</strong> (70 mm)</li>
+      <li>So right side usable depth = 7" − 2.75" = <strong>4.25"</strong></li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--node-a)">🔗 Front wall velcro</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;line-height:1.8;">
+      <li>Left side only (past the notch)</li>
+      <li>Available area: ~4" wide × 20 mm tall</li>
+      <li>Plenty for a velcro strip</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--node-b)">🔄 Friction pads underside</h3>
+    <ul style="font-size:0.85rem;padding-left:18px;line-height:1.8;">
+      <li>3 corners (skipping notched area)</li>
+      <li>15×15 mm recessed pockets</li>
+      <li>3M Bumpon or silicone dots</li>
+    </ul>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Does this look right?</strong> The tray is centered on the tunnel, 6" wide × 7" long, with a rectangular notch at the right-front corner that's ~1.75" wide × 2.75" deep. The left side of the front wall has a ~4" span for velcro to the firewall. Three friction pads on the underside (the notched corner doesn't need one since the tray won't contact the tunnel there).<br><br>
+  If this matches what you see in the car, I'll draft the OpenSCAD.
+</div>
+
+</body>
+</html>

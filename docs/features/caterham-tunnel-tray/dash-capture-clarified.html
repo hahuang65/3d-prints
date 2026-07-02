@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dash-capture — clarified</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --accent: #1a6b8a;
+  --node-a: #1a6b8a;
+  --node-b: #7a5a2a;
+  --node-c: #4a7a3a;
+  --node-d: #8a3a4a;
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+body {
+  font-family: var(--font-body); background: var(--bg);
+  padding: 32px; max-width: 900px; margin: 0 auto;
+  color: var(--text); line-height: 1.6;
+}
+h1 { font-size: 1.8rem; }
+.sketch {
+  background: var(--surface); border: 1.5px solid var(--blueprint-line-strong);
+  border-radius: 8px; padding: 24px; margin: 20px 0; overflow: hidden;
+}
+.sketch svg { width: 100%; height: auto; display: block; }
+.callout {
+  background: rgba(26, 107, 138, 0.08); border: 1px solid var(--blueprint-line-strong);
+  border-radius: 6px; padding: 16px 20px; margin: 16px 0;
+}
+.callout strong { color: var(--accent); }
+code { font-family: var(--font-mono); background: rgba(26, 107, 138, 0.08); padding: 1px 5px; border-radius: 3px; }
+</style>
+</head>
+<body>
+
+<h1>Let me clarify the dash-capture idea</h1>
+
+<p>The tongue is a <strong>flat, horizontal extension of the tray floor</strong> that reaches forward and sits <em>under</em> the dashboard panel. It's not a wall — it's a thin shelf that the dash sits above, mechanically blocking the tray from lifting up.</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+    <!-- Labels -->
+    <text x="250" y="20" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-dim)">SIDE VIEW — looking at driver's side (not to scale)</text>
+
+    <!-- Car body / scuttle outline -->
+    <path d="M0,160 Q60,140 100,130 L120,130" fill="none" stroke="var(--text-dim)" stroke-width="1.5"/>
+    <text x="10" y="175" font-family="var(--font-mono)" font-size="7" fill="var(--text-dim)">scuttle / body</text>
+
+    <!-- Dashboard panel -->
+    <path d="M120,55 L120,175" stroke="var(--node-a)" stroke-width="3" fill="none"/>
+    <rect x="90" y="55" width="30" height="120" rx="3" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+    <text x="105" y="130" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-a)" transform="rotate(-90,105,130)">DASHBOARD</text>
+
+    <!-- Dash lower edge label -->
+    <path d="M120,175 L155,185" stroke="var(--node-d)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="160" y="190" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)">dash lower edge</text>
+
+    <!-- Transmission tunnel -->
+    <rect x="120" y="195" width="300" height="30" rx="4" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="2"/>
+    <text x="270" y="215" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--node-b)">TRANSMISSION TUNNEL</text>
+
+    <!-- Tunnel extending forward under dash -->
+    <rect x="50" y="195" width="70" height="30" rx="2" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="60" y="210" font-family="var(--font-mono)" font-size="6" fill="var(--node-b)">tunnel extends forward (under scuttle)</text>
+
+    <!-- THE GAP — critical -->
+    <rect x="130" y="170" width="100" height="25" rx="2" fill="rgba(255,200,50,0.15)" stroke="#d4a017" stroke-width="1.5" stroke-dasharray="5,3"/>
+    <text x="180" y="187" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="#d4a017">IS THIS GAP HERE?</text>
+    <line x1="120" y1="170" x2="120" y2="195" stroke="#d4a017" stroke-width="1.2" marker-start="url(#arrowup)" marker-end="url(#arrowdown)"/>
+    <text x="110" y="185" text-anchor="end" font-family="var(--font-mono)" font-size="8" fill="#d4a017">? mm</text>
+
+    <!-- TRAY (positioned where it would go) -->
+    <rect x="140" y="168" width="160" height="27" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="2"/>
+    <text x="220" y="187" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--node-c)">TRAY</text>
+
+    <!-- Tongue extension -->
+    <rect x="124" y="168" width="16" height="27" rx="2" fill="var(--node-c)" stroke="var(--node-c)" stroke-width="1.5" opacity="0.6"/>
+    <text x="120" y="163" font-family="var(--font-mono)" font-size="7" fill="var(--node-c)">tongue slides here →</text>
+
+    <!-- Arrow showing tongue insertion -->
+    <path d="M145,155 L125,155" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowright)"/>
+    <text x="135" y="150" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--accent)">slide forward to insert tongue</text>
+
+    <!-- Dual lock dots -->
+    <circle cx="185" cy="195" r="3.5" fill="var(--node-d)"/>
+    <circle cx="230" cy="195" r="3.5" fill="var(--node-d)"/>
+    <circle cx="275" cy="195" r="3.5" fill="var(--node-d)"/>
+    <text x="245" y="210" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)">Dual Lock patches</text>
+
+    <!-- Shifter -->
+    <path d="M380,195 L380,140" stroke="var(--node-d)" stroke-width="2"/>
+    <circle cx="380" cy="135" r="10" fill="none" stroke="var(--node-d)" stroke-width="2"/>
+    <text x="380" y="132" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)">shifter</text>
+
+    <defs>
+      <marker id="arrowup" markerWidth="6" markerHeight="4" refX="3" refY="4" orient="auto">
+        <path d="M0,4 L3,0 L6,4" fill="#d4a017" stroke="none"/>
+      </marker>
+      <marker id="arrowdown" markerWidth="6" markerHeight="4" refX="3" refY="0" orient="auto">
+        <path d="M0,0 L3,4 L6,0" fill="#d4a017" stroke="none"/>
+      </marker>
+      <marker id="arrowright" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+        <path d="M0,0 L6,2 L0,4" fill="var(--accent)" stroke="none"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<div class="callout">
+  <strong>You're right to question this.</strong> My earlier description was ambiguous — I said "thin wall" which sounds vertical. The tongue is a flat forward extension of the tray's floor — it's horizontal. It wedges into the gap between the tunnel top and the dash lower edge. If that gap doesn't exist (if the dash sits tight against the tunnel), then this whole approach doesn't work for your car.
+</div>
+
+<h2>Plan B might be more practical</h2>
+
+<p>The <strong>tunnel-edge clamp</strong> approach doesn't need the dash at all. The tray has flanges that reach down both sides and grip the tunnel cover's side edges with a screw-tightened clamp. No adhesive, no dash gap needed.</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 500 200" xmlns="http://www.w3.org/2000/svg">
+    <text x="250" y="16" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-dim)">PLAN B — C-CLAMP ON TUNNEL EDGES (end-on view)</text>
+
+    <!-- Tunnel -->
+    <rect x="120" y="100" width="260" height="50" rx="6" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="2"/>
+    <text x="250" y="132" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--node-b)">TUNNEL COVER</text>
+
+    <!-- Tunnel side edges (the clamping surface) -->
+    <rect x="110" y="100" width="15" height="50" rx="2" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.5"/>
+    <rect x="375" y="100" width="15" height="50" rx="2" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.5"/>
+    <text x="117" y="120" font-family="var(--font-mono)" font-size="6" fill="var(--node-b)">edge</text>
+    <text x="375" y="120" font-family="var(--font-mono)" font-size="6" fill="var(--node-b)">edge</text>
+
+    <!-- Tray -->
+    <rect x="155" y="50" width="190" height="50" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="2"/>
+    <text x="250" y="80" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--node-c)">TRAY</text>
+
+    <!-- C-clamp flanges -->
+    <path d="M155,100 L155,150 L140,150 L140,105" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="2"/>
+    <path d="M345,100 L345,150 L360,150 L360,105" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="2"/>
+
+    <text x="148" y="130" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-a)">C-clamp flange</text>
+    <text x="352" y="130" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-a)">C-clamp flange</text>
+
+    <!-- Screws -->
+    <circle cx="148" cy="145" r="4" fill="var(--node-d)"/>
+    <text x="130" y="150" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)">M4</text>
+    <circle cx="352" cy="145" r="4" fill="var(--node-d)"/>
+    <text x="355" y="150" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)">M4</text>
+
+    <!-- Tightening arrows -->
+    <path d="M148,165 L148,180" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowdown2)"/>
+    <path d="M352,165 L352,180" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#arrowdown2)"/>
+    <text x="220" y="178" font-family="var(--font-mono)" font-size="8" fill="var(--accent)">screw tightens clamp onto tunnel edge</text>
+
+    <!-- Seat / knee clearance note -->
+    <path d="M445,50 Q440,100 445,150" fill="none" stroke="var(--text-dim)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="448" y="95" font-family="var(--font-mono)" font-size="7" fill="var(--text-dim)" transform="rotate(90,448,95)">knee / seat zone</text>
+    <path d="M55,50 Q60,100 55,150" fill="none" stroke="var(--text-dim)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="40" y="95" font-family="var(--font-mono)" font-size="7" fill="var(--text-dim)" transform="rotate(-90,40,95)">knee / seat zone</text>
+
+    <defs>
+      <marker id="arrowdown2" markerWidth="6" markerHeight="4" refX="3" refY="4" orient="auto">
+        <path d="M0,0 L3,4 L6,0" fill="var(--accent)" stroke="none"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<h2>Or — simplest of all: just Dual Lock</h2>
+<p>If neither the dash capture nor the clamp edges work, <strong>Option A (simple tray + 3M Dual Lock)</strong> is still a solid approach. Dual Lock in shear is surprisingly strong — a 50×50 mm patch holds ~25 kg laterally. The peel risk is real (knee bump), but you mitigate it with a <strong>low profile</strong> (15–20 mm tall tray walls) so knees glance off rather than hooking under the edge.</p>
+
+<p style="margin-top:24px;font-size:1.05rem;font-weight:500;">Can you take a quick look (or a photo) under your dash at the tunnel centreline? That'll tell us which path to go down.</p>
+
+</body>
+</html>

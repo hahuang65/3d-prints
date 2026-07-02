@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham Tunnel Tray — Mounting Strategies Deep Dive</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'SF Mono', Consolas, monospace;
+
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --surface-elevated: #fffdf5;
+  --border: rgba(0, 40, 80, 0.10);
+  --border-bright: rgba(0, 40, 80, 0.20);
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --text-faint: #8a9aaa;
+  --accent: #1a6b8a;
+  --accent-dim: rgba(26, 107, 138, 0.08);
+  --accent-line: #2a7b9a;
+
+  --node-a: #1a6b8a;
+  --node-a-dim: rgba(26, 107, 138, 0.10);
+  --node-b: #7a5a2a;
+  --node-b-dim: rgba(122, 90, 42, 0.10);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.10);
+  --node-d: #8a3a4a;
+  --node-d-dim: rgba(138, 58, 74, 0.10);
+
+  --grid: rgba(26, 107, 138, 0.06);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131d26;
+    --surface: #1a2630;
+    --surface-elevated: #1f2c38;
+    --border: rgba(100, 180, 220, 0.10);
+    --border-bright: rgba(100, 180, 220, 0.18);
+    --text: #d8e2ec;
+    --text-dim: #8a9aaa;
+    --text-faint: #5a6a7a;
+    --accent: #5ab8d8;
+    --accent-dim: rgba(90, 184, 216, 0.08);
+    --accent-line: #4aa8c8;
+    --node-a: #5ab8d8;
+    --node-a-dim: rgba(90, 184, 216, 0.10);
+    --node-b: #d8a85a;
+    --node-b-dim: rgba(216, 168, 90, 0.10);
+    --node-c: #7ac86a;
+    --node-c-dim: rgba(122, 200, 106, 0.10);
+    --node-d: #d86a7a;
+    --node-d-dim: rgba(216, 106, 122, 0.10);
+    --grid: rgba(90, 184, 216, 0.04);
+    --blueprint-line: rgba(90, 184, 216, 0.12);
+    --blueprint-line-strong: rgba(90, 184, 216, 0.25);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 24px 32px 64px;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 12px;
+  border: 1.5px solid var(--blueprint-line);
+  pointer-events: none;
+  z-index: 0;
+}
+
+h1, h2, h3 { font-weight: 600; line-height: 1.25; letter-spacing: -0.01em; }
+h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 0.15em; }
+h2 {
+  font-size: 1.5rem; margin-bottom: 0.6em; padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--blueprint-line-strong);
+  display: flex; align-items: center; gap: 12px;
+}
+h2 .section-number {
+  font-family: var(--font-mono); font-size: 0.7rem; font-weight: 500;
+  padding: 2px 8px; border: 1.5px solid var(--accent-line);
+  border-radius: 4px; color: var(--accent); letter-spacing: 1px;
+}
+h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5em; color: var(--accent); }
+p { margin-bottom: 0.8em; max-width: 680px; }
+p:last-child { margin-bottom: 0; }
+code { font-family: var(--font-mono); font-size: 0.82em; background: var(--accent-dim); color: var(--accent); padding: 1px 5px; border-radius: 3px; }
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+
+.hero {
+  margin-bottom: 40px; padding: 32px 32px 28px; position: relative; z-index: 1;
+}
+.hero__subtitle {
+  font-family: var(--font-mono); font-size: 0.75rem;
+  color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;
+}
+.hero h1 { font-size: 2.6rem; max-width: 700px; }
+.hero p { font-size: 1.05rem; color: var(--text-dim); margin-top: 8px; max-width: 640px; }
+
+.ve-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+  padding: 20px 24px; position: relative;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+.ve-card:hover { border-color: var(--blueprint-line-strong); box-shadow: 0 2px 12px rgba(26, 107, 138, 0.06); }
+.ve-card--a { border-left: 3px solid var(--node-a); }
+.ve-card--b { border-left: 3px solid var(--node-b); }
+.ve-card--c { border-left: 3px solid var(--node-c); }
+.ve-card--d { border-left: 3px solid var(--node-d); }
+.ve-card--elevated { background: var(--surface-elevated); box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06); }
+.ve-card--hero {
+  background: var(--surface-elevated);
+  border: 2px solid var(--accent-line);
+  box-shadow: 0 4px 20px rgba(26, 107, 138, 0.10);
+}
+
+.ve-card__label {
+  font-family: var(--font-mono); font-size: 0.62rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px;
+  color: var(--node-a); margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+}
+.ve-card__label::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+.grid-2-1 { display: grid; grid-template-columns: 2fr 1fr; gap: 20px; }
+.grid > *, [style*="display: grid"] > * { min-width: 0; }
+
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .grid-2-1 { grid-template-columns: 1fr; }
+  body { padding: 12px 16px 40px; }
+  .hero h1 { font-size: 1.8rem; }
+}
+
+.section { margin-bottom: 48px; position: relative; z-index: 1; }
+.section__intro { max-width: 720px; color: var(--text-dim); margin-bottom: 20px; font-size: 0.95rem; }
+
+.ve-list { list-style: none; padding: 0; margin: 0; }
+.ve-list li {
+  padding: 6px 0 6px 20px; position: relative; font-size: 0.92rem; line-height: 1.5;
+}
+.ve-list li::before {
+  content: '›'; position: absolute; left: 2px; color: var(--accent); font-weight: 700; font-size: 1.1rem;
+}
+.ve-list--tight li { padding: 3px 0 3px 18px; }
+
+.tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.62rem; font-weight: 500;
+  padding: 2px 7px; border-radius: 3px; letter-spacing: 0.3px;
+}
+.tag--a { background: var(--node-a-dim); color: var(--node-a); }
+.tag--b { background: var(--node-b-dim); color: var(--node-b); }
+.tag--c { background: var(--node-c-dim); color: var(--node-c); }
+.tag--d { background: var(--node-d-dim); color: var(--node-d); }
+.tag--muted { background: var(--blueprint-line); color: var(--text-dim); }
+
+.sketch-zone {
+  background: var(--surface-elevated);
+  border: 1.5px solid var(--blueprint-line-strong);
+  border-radius: 6px; padding: 20px; position: relative; min-height: 140px; overflow: hidden;
+}
+.sketch-zone__label {
+  position: absolute; bottom: 6px; right: 10px;
+  font-family: var(--font-mono); font-size: 0.5rem; color: var(--text-faint); letter-spacing: 1px;
+}
+.sketch-zone svg { width: 100%; height: auto; display: block; }
+
+.callout {
+  background: var(--accent-dim); border: 1px solid var(--blueprint-line-strong);
+  border-radius: 6px; padding: 16px 20px; margin: 16px 0; font-size: 0.9rem;
+}
+.callout__label {
+  font-family: var(--font-mono); font-size: 0.6rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent); margin-bottom: 6px;
+}
+
+/* Rankings */
+.rank-bar {
+  display: flex; gap: 4px; align-items: center; margin-top: 4px;
+}
+.rank-dot {
+  width: 10px; height: 10px; border-radius: 50%;
+}
+.rank-dot--on { background: var(--node-c); }
+.rank-dot--half { background: var(--node-b); }
+.rank-dot--off { background: var(--blueprint-line); }
+
+/* staggered */
+.ve-card, .section h2, .section__intro {
+  opacity: 0; transform: translateY(12px);
+  animation: fadeUp 0.5s ease-out forwards;
+}
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+.ve-card:nth-child(1) { animation-delay: 0.05s; }
+.ve-card:nth-child(2) { animation-delay: 0.10s; }
+.ve-card:nth-child(3) { animation-delay: 0.15s; }
+.ve-card:nth-child(4) { animation-delay: 0.20s; }
+.ve-card:nth-child(5) { animation-delay: 0.25s; }
+.ve-card:nth-child(6) { animation-delay: 0.30s; }
+.section:nth-child(2) h2 { animation-delay: 0.10s; }
+.section:nth-child(3) h2 { animation-delay: 0.20s; }
+.section:nth-child(4) h2 { animation-delay: 0.30s; }
+@media (prefers-reduced-motion: reduce) {
+  .ve-card, .section h2, .section__intro { opacity: 1; transform: none; animation: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HERO -->
+<header class="hero">
+  <div class="hero__subtitle">Mounting Deep Dive</div>
+  <h1>How does it stay on the tunnel?</h1>
+  <p>
+    Five mounting strategies, ranked. The right answer depends on how your
+    S3's tunnel cover is shaped, what's under the dash, and how reversible
+    you want it to be.
+  </p>
+</header>
+
+<!-- ============================================================ THE PROBLEM -->
+<section class="section">
+  <h2><span class="section-number">00</span> The core challenge</h2>
+  <p class="section__intro">
+    The tray lives in a high-vibration, high-temperature environment and needs to
+    survive aggressive cornering without letting go. Here's what the mounting
+    system must resist:
+  </p>
+
+  <div class="grid-3">
+    <div class="ve-card ve-card--d">
+      <div class="ve-card__label">1. Shear (lateral)</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        Cornering forces push the tray sideways. On a 420R with sticky tyres,
+        that's roughly <strong>0.9–1.1 G</strong> lateral acceleration.
+      </p>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        A 500 g loaded tray experiences ~5 N of shear force.
+        This is actually the <em>easy</em> direction for adhesives.
+      </p>
+    </div>
+    <div class="ve-card ve-card--d">
+      <div class="ve-card__label">2. Peel (lift-off)</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        The worst-case load. Someone bumps the tray with their knee, or you
+        grab it to pull yourself out of the seat. Adhesive joints fail
+        catastrophically in peel.
+      </p>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        <strong>This is the failure mode every adhesive-only mount suffers.</strong>
+      </p>
+    </div>
+    <div class="ve-card ve-card--d">
+      <div class="ve-card__label">3. Heat soak</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        The transmission tunnel downstream of a 2.0L Duratec can reach
+        <strong>60–80 °C</strong> on a hot day after a hard drive. Adhesives
+        creep and soften well below their rated max.
+      </p>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        3M Dual Lock is rated to ~93 °C continuous, but peel strength drops
+        significantly above 50 °C.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ STRATEGIES -->
+<section class="section">
+  <h2><span class="section-number">01</span> Five strategies, ranked</h2>
+
+  <!-- Strategy: Dash-captured -->
+  <div class="ve-card ve-card--hero" style="margin-bottom:20px;">
+    <div class="ve-card__label" style="color:var(--node-c)">Recommended</div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+      <div style="flex:1;min-width:260px;">
+        <h3 style="font-size:1.2rem;margin-bottom:0.3em;">🥇 Dash-captured + Dual Lock</h3>
+        <p style="font-size:0.9rem;color:var(--text-dim);margin-bottom:8px;">
+          The tray has a thin front tongue that slides <em>under</em> the dashboard.
+          The dash overhang mechanically prevents the tray from lifting.
+          Dual Lock patches on the tunnel floor prevent fore-aft / lateral sliding.
+        </p>
+        <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+          <li><strong>Peel immunity</strong> — the dash is a mechanical stop. Adhesive never sees peel loads.</li>
+          <li><strong>Shear handled by Dual Lock</strong> — its strongest axis.</li>
+          <li><strong>Fully reversible</strong> — no drilling, no adhesive failure over time.</li>
+          <li><strong>Removal:</strong> slide the tray rearward (out from under the dash), then lift.</li>
+          <li>Requires ~10–15 mm of accessible gap under the dash at the tunnel centreline.</li>
+        </ul>
+      </div>
+      <div class="sketch-zone" style="flex:1;min-width:220px;min-height:180px;">
+        <svg viewBox="0 0 320 180" xmlns="http://www.w3.org/2000/svg">
+          <!-- Dash section -->
+          <rect x="0" y="10" width="80" height="30" rx="3" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+          <text x="10" y="30" font-family="var(--font-mono)" font-size="7" fill="var(--node-a)">DASH</text>
+
+          <!-- Dash lower edge -->
+          <line x1="80" y1="40" x2="80" y2="120" stroke="var(--node-a)" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+          <!-- Tunnel -->
+          <rect x="50" y="140" width="220" height="25" rx="5" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.2"/>
+          <text x="160" y="157" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-b)">TUNNEL</text>
+
+          <!-- Tray -->
+          <rect x="70" y="108" width="140" height="32" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5"/>
+          <text x="140" y="128" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-c)">TRAY</text>
+
+          <!-- Tongue under dash -->
+          <rect x="50" y="108" width="30" height="32" rx="3" fill="var(--node-c)" opacity="0.4" stroke="var(--node-c)" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="55" y="128" font-family="var(--font-mono)" font-size="6" fill="var(--node-c)">tongue</text>
+
+          <!-- Dual lock dots -->
+          <circle cx="115" cy="140" r="3" fill="var(--node-d)"/>
+          <circle cx="155" cy="140" r="3" fill="var(--node-d)"/>
+          <circle cx="195" cy="140" r="3" fill="var(--node-d)"/>
+          <text x="155" y="138" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-d)">dual lock</text>
+
+          <!-- Arrow: slide in/out -->
+          <path d="M240,124 L280,124" stroke="var(--accent-line)" stroke-width="1.5" marker-end="url(#arrowhead)"/>
+          <path d="M280,124 L240,124" stroke="var(--accent-line)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrowhead)"/>
+          <text x="275" y="116" font-family="var(--font-mono)" font-size="6" fill="var(--accent)">slide</text>
+
+          <!-- Force annotation -->
+          <path d="M160,80 L160,108" stroke="var(--node-d)" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrowhead)"/>
+          <text x="150" y="95" font-family="var(--font-mono)" font-size="6" fill="var(--node-d)">knee load</text>
+          <text x="165" y="100" font-family="var(--font-mono)" font-size="5" fill="var(--node-d)">→ dash stops it</text>
+
+          <defs>
+            <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+              <path d="M0,0 L6,2 L0,4" fill="var(--accent-line)" stroke="none"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="sketch-zone__label">Side section · dash-captured</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Other strategies grid -->
+  <div class="grid-2">
+    <div class="ve-card ve-card--a">
+      <div class="ve-card__label" style="color:var(--node-a)">🥈 Tunnel-edge clamp</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        The tray has downward flanges that hook <em>around</em> the sides of the
+        tunnel cover, clamping the edges. No adhesive at all.
+      </p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li><strong>Pure mechanical</strong> — zero adhesive, zero creep.</li>
+        <li><strong>Reversible.</strong> Spring-loaded or screw-tightened clamp.</li>
+        <li>Requires the tunnel side flanges to be exposed and accessible.</li>
+        <li>The tunnel might be carpeted or have sill trim overlapping the edge.</li>
+        <li>Clamp could mar the tunnel edge finish.</li>
+      </ul>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--c">No adhesive</span>
+        <span class="tag tag--b">Needs exposed flanges</span>
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--b">
+      <div class="ve-card__label" style="color:var(--node-b)">🥉 Full-surface VHB</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        3M VHB 4950 tape across the entire tray floor. Permanent bond.
+      </p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li><strong>Very strong in shear</strong> — the full footprint works for you.</li>
+        <li>Essentially <strong>permanent</strong> — removal risks gel-coat delamination.</li>
+        <li>Still vulnerable to peel at the edges when bumped.</li>
+        <li>Heat reduces bond strength over multiple cycles.</li>
+        <li>No way to remove the tray for cleaning or access.</li>
+      </ul>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--d">Permanent</span>
+        <span class="tag tag--b">Strong shear</span>
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--d">
+      <div class="ve-card__label" style="color:var(--node-d)">Magnets</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        Embed neodymium magnets in the tray floor, with a steel plate or
+        matching magnets bonded to the tunnel underside.
+      </p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li><strong>Tool-free removal</strong> — just lift.</li>
+        <li>Needs access to the tunnel <em>underside</em> to place the steel plate.</li>
+        <li>Magnet strength vs thickness tradeoff — strong magnets are thick.</li>
+        <li>Can interfere with phones / credit cards in the tray.</li>
+        <li>Vibration can cause magnets to walk or shift over time.</li>
+      </ul>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--a">Tool-free</span>
+        <span class="tag tag--d">Needs underside access</span>
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--b">
+      <div class="ve-card__label" style="color:var(--node-b)">Shared screw tabs</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        The tunnel cover is held on by screws along its sides. The tray has
+        tabs that slot under the same screws.
+      </p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li><strong>Rock solid</strong> — borrowing the car's own fastening system.</li>
+        <li>Only works if the tunnel-side screws are accessible from inside the cockpit.</li>
+        <li>Tray needs to align with existing screw positions (spacing varies).</li>
+        <li>Requires slightly longer screws. Totally reversible.</li>
+        <li>Best for a permanent / semi-permanent install.</li>
+      </ul>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--c">Very secure</span>
+        <span class="tag tag--b">Needs screw alignment</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ RANKINGS -->
+<section class="section">
+  <h2><span class="section-number">02</span> How they stack up</h2>
+
+  <div class="ve-card">
+    <table style="width:100%;border-collapse:collapse;font-size:0.82rem;">
+      <thead>
+        <tr>
+          <th style="text-align:left;padding:10px 12px;border-bottom:2px solid var(--blueprint-line-strong);font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);">Strategy</th>
+          <th style="text-align:center;padding:10px 12px;border-bottom:2px solid var(--blueprint-line-strong);font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);">Peel resistance</th>
+          <th style="text-align:center;padding:10px 12px;border-bottom:2px solid var(--blueprint-line-strong);font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);">Shear strength</th>
+          <th style="text-align:center;padding:10px 12px;border-bottom:2px solid var(--blueprint-line-strong);font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);">Heat endurance</th>
+          <th style="text-align:center;padding:10px 12px;border-bottom:2px solid var(--blueprint-line-strong);font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);">No mods</th>
+          <th style="text-align:center;padding:10px 12px;border-bottom:2px solid var(--blueprint-line-strong);font-family:var(--font-mono);font-size:0.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);">Removable</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--blueprint-line);font-weight:600;">🥇 Dash-captured + Dual Lock</td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--blueprint-line);font-weight:600;">🥈 Tunnel-edge clamp</td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--b">★★★☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--blueprint-line);font-weight:600;">🥉 Full-surface VHB</td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--b">★★☆☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--b">★★★☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--d">★☆☆☆☆</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:1px solid var(--blueprint-line);font-weight:600;">Magnets</td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--b">★★★☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--b">★★★☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--b">★★★☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:1px solid var(--blueprint-line);"><span class="tag tag--c">★★★★★</span></td>
+        </tr>
+        <tr>
+          <td style="padding:10px 12px;border-bottom:none;font-weight:600;">Shared screw tabs</td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:none;"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:none;"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:none;"><span class="tag tag--c">★★★★★</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:none;"><span class="tag tag--d">★★☆☆☆</span></td>
+          <td style="text-align:center;padding:10px 12px;border-bottom:none;"><span class="tag tag--b">★★★☆☆</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ THE WINNER -->
+<section class="section">
+  <h2><span class="section-number">03</span> The dash-captured approach in detail</h2>
+  <p class="section__intro">
+    Here's why I think this is the right answer — and how the design works.
+  </p>
+
+  <div class="grid-2-1">
+    <div class="ve-card ve-card--elevated">
+      <div class="ve-card__label">How the mechanics work</div>
+
+      <h3 style="font-size:0.95rem;">Lifting prevented by the dash</h3>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        The tray's front edge has a thin (<code>wall</code>-thick) tongue that
+        extends ~15 mm forward. This slides into the gap between the tunnel top
+        and the underside of the dashboard. The dash sits above it — the tray
+        physically <em>cannot</em> lift up. Knee bumps, grabbing the tray, even
+        aggressive cornering Gs — none of it can peel the tray off.
+      </p>
+
+      <h3 style="font-size:0.95rem;margin-top:12px;">Sliding prevented by Dual Lock</h3>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        Three 25×25 mm patches of 3M Dual Lock (SJ3550) distributed along the
+        tray floor. In pure shear, each patch holds ~7 kg. Three patches = over
+        20 kg of shear capacity — more than enough for a phone + keys + wallet.
+        The Dual Lock never sees peel loads because the dash stops lifting.
+      </p>
+
+      <h3 style="font-size:0.95rem;margin-top:12px;">Thermal isolation</h3>
+      <p style="font-size:0.85rem;color:var(--text-dim);">
+        The tray floor sits directly on the tunnel, so it will get warm.
+        But ASA handles 80 °C comfortably. A ~2 mm air gap under the lid
+        provides some convection cooling. If the tunnel is notably hot,
+        you could add a thin cork or silicone gasket under the tray.
+      </p>
+    </div>
+
+    <div class="ve-card ve-card--d">
+      <div class="ve-card__label">You need to check</div>
+      <ul class="ve-list" style="font-size:0.85rem;">
+        <li>
+          <strong>Is there ~12 mm of vertical gap</strong> between the tunnel
+          top and the lowest part of the dash, at the centreline?
+        </li>
+        <li>
+          <strong>How far forward does the dash overhang?</strong>
+          The tongue needs ~15 mm of insertion. Is there space?
+        </li>
+        <li>
+          <strong>Are there wires / heater cables</strong> hanging under the
+          dash in that area? They might need a small routing clip to stay clear.
+        </li>
+        <li>
+          <strong>Is the tunnel surface smooth?</strong> Dual Lock needs a clean,
+          flat surface to bond to. Painted aluminium is ideal. Textured gel coat
+          may need a light sand.
+        </li>
+      </ul>
+
+      <div class="callout" style="margin:12px 0 0;">
+        <div class="callout__label">Quick test</div>
+        Cut a piece of 2 mm cardboard to the planned tray shape, slide it
+        forward under the dash. Does it fit? Does it stay when you let go?
+        If yes — the dash capture works.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ PLAN B -->
+<section class="section">
+  <h2><span class="section-number">04</span> Plan B: If the dash doesn't cooperate</h2>
+  <p class="section__intro">
+    Maybe the dash gap is too tight, or wires block it. Here's the fallback.
+  </p>
+
+  <div class="ve-card ve-card--a ve-card--elevated">
+    <div style="display:flex;flex-wrap:wrap;gap:24px;align-items:flex-start;">
+      <div style="flex:1;min-width:240px;">
+        <h3 style="font-size:1.05rem;">Tunnel-edge wrap clamp</h3>
+        <p style="font-size:0.85rem;color:var(--text-dim);">
+          The tray has integral <strong>C-channel flanges</strong> on both
+          sides that reach down and grip the tunnel cover's side edges.
+          A single M4 screw per side (captive nut in the flange) tightens
+          the clamp. No adhesive, no dash required.
+        </p>
+        <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+          <li>Requires the tunnel cover's side edges to be exposed</li>
+          <li>Adds ~15 mm of width per side for the clamp flange</li>
+          <li>The flanges sit below the tray floor — they don't widen the tray itself</li>
+          <li>Can be padded with thin felt to avoid marking the tunnel</li>
+          <li>Removable in seconds with a screwdriver</li>
+        </ul>
+        <div style="margin-top:8px;">
+          <span class="tag tag--c">Pure mechanical</span>
+          <span class="tag tag--b">No dash needed</span>
+        </div>
+      </div>
+      <div class="sketch-zone" style="flex:1;min-width:200px;min-height:160px;">
+        <svg viewBox="0 0 300 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tunnel section -->
+          <path d="M30,100 Q80,95 150,95 Q220,95 270,100 L270,120 L30,120 Z" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1.2"/>
+
+          <!-- Tunnel side flanges -->
+          <rect x="20" y="100" width="10" height="40" rx="1" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1"/>
+          <rect x="270" y="100" width="10" height="40" rx="1" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1"/>
+          <text x="25" y="130" font-family="var(--font-mono)" font-size="5" fill="var(--node-b)">tunnel edge</text>
+
+          <!-- Tray -->
+          <rect x="70" y="60" width="160" height="35" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5"/>
+          <text x="150" y="82" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-c)">TRAY</text>
+
+          <!-- C-clamp flanges -->
+          <path d="M70,95 L70,120 L58,120 L58,100" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+          <path d="M230,95 L230,120 L242,120 L242,100" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+          <text x="64" y="112" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-a)">C-clamp</text>
+          <text x="236" y="112" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-a)">C-clamp</text>
+
+          <!-- Screws -->
+          <circle cx="64" cy="115" r="3" fill="var(--node-d)"/>
+          <circle cx="236" cy="115" r="3" fill="var(--node-d)"/>
+          <text x="52" y="110" font-family="var(--font-mono)" font-size="5" fill="var(--node-d)">M4</text>
+          <text x="228" y="110" font-family="var(--font-mono)" font-size="5" fill="var(--node-d)">M4</text>
+
+          <defs>
+            <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+              <path d="M0,0 L6,2 L0,4" fill="var(--accent-line)" stroke="none"/>
+            </marker>
+          </defs>
+        </svg>
+        <div class="sketch-zone__label">Section · C-clamp on tunnel edges</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ NEXT -->
+<section class="section">
+  <h2><span class="section-number">05</span> So — what's under your dash?</h2>
+
+  <div class="ve-card ve-card--hero" style="border-color:var(--node-c);">
+    <div class="ve-card__label">Two questions to answer</div>
+    <div style="display:flex;flex-wrap:wrap;gap:24px;">
+      <div style="flex:1;min-width:200px;">
+        <h3 style="font-size:1.1rem;">1. Can you slide a tongue under the dash?</h3>
+        <p style="font-size:0.9rem;color:var(--text-dim);">
+          Have a look under the dash at the tunnel centreline. Is there a gap
+          between the tunnel top and the dash panel's lower edge? If there's
+          even ~10 mm of space, the dash-capture approach works.
+        </p>
+      </div>
+      <div style="flex:1;min-width:200px;">
+        <h3 style="font-size:1.1rem;">2. Are the tunnel edges accessible?</h3>
+        <p style="font-size:0.9rem;color:var(--text-dim);">
+          If the dash gap is blocked, look at the tunnel sides. Can you see
+          the edge where the tunnel cover meets the carpet / sill? If yes,
+          the C-clamp approach is your Plan B.
+        </p>
+      </div>
+    </div>
+    <p style="margin-top:16px;font-size:1rem;font-weight:500;">
+      Take a photo under the dash and I can help verify which approach fits.
+    </p>
+  </div>
+</section>
+
+</body>
+</html>

@@ -13,26 +13,24 @@ its OpenSCAD source, slice-ready STL exports, and a render.
      this comment, and encode spaces in image/link paths as %20.
 ═══════════════════════════════════════════════════════════════════════ -->
 
-<!-- ▶▶▶ PRODUCT TEMPLATE — copy me ▶▶▶
+## Caterham Tunnel Tray
 
-## <Product Name>
+![Caterham Tunnel Tray](Caterham%20Tunnel%20Tray/render.png)
 
-![<Product Name>](<Folder>/render.png)
-
-*<One-line tagline.>*
-
-<A short paragraph on what it is and how it works.>
+*A single-piece open tray that sits on the transmission tunnel of a Caterham
+420R S3, pushed forward against the firewall. Attaches via Dual Lock on the
+front wall and grip tape on the underside — no adhesive on the leather tunnel
+cover.*
 
 | | |
 | --- | --- |
-| **Source** | [`<file>.scad`](<Folder>/<file>.scad) |
-| **STLs** | [`<part>.stl`](<Folder>/<part>.stl) |
-| **Material** | ASA / PETG |
-| **Print notes** | <orientation, supports, walls, infill> |
+| **Source** | [`tunnel_tray.scad`](Caterham%20Tunnel%20Tray/tunnel_tray.scad) |
+| **Test plate STL** | [`tunnel_tray_test_plate.stl`](Caterham%20Tunnel%20Tray/tunnel_tray_test_plate.stl) |
+| **Hardware** | 3M Dual Lock™ SJ3550A + Cattongue Grips non-abrasive tape |
+| **Material** | ASA / PETG (never PLA) |
+| **Print notes** | Print face-down, no supports. ≥4 walls, 25–30% infill. |
 
 ---
-
-◀◀◀ END TEMPLATE ◀◀◀ -->
 
 ## Volvo Headrest Cupholder
 

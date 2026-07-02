@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham Tunnel Tray — Firewall Velcro Mount</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --accent: #1a6b8a;
+  --accent-dim: rgba(26, 107, 138, 0.08);
+  --node-a: #1a6b8a;
+  --node-a-dim: rgba(26, 107, 138, 0.12);
+  --node-b: #7a5a2a;
+  --node-b-dim: rgba(122, 90, 42, 0.12);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.12);
+  --node-d: #8a3a4a;
+  --node-d-dim: rgba(138, 58, 74, 0.12);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+body {
+  font-family: var(--font-body); background: #f4f1ea;
+  padding: 32px; max-width: 860px; margin: 0 auto;
+  color: var(--text); line-height: 1.6;
+}
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.3rem; margin-top: 32px; color: var(--node-a); }
+.sketch {
+  background: var(--surface); border: 1.5px solid var(--blueprint-line-strong);
+  border-radius: 8px; padding: 20px; margin: 16px 0; overflow: hidden;
+}
+.sketch svg { width: 100%; height: auto; display: block; }
+.callout {
+  background: var(--accent-dim); border: 1px solid var(--blueprint-line-strong);
+  border-radius: 6px; padding: 16px 20px; margin: 16px 0;
+}
+code { font-family: var(--font-mono); background: var(--accent-dim); padding: 1px 5px; border-radius: 3px; }
+.tag {
+  display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; font-weight: 500;
+  padding: 2px 7px; border-radius: 3px; margin: 2px;
+}
+.tag--a { background: var(--node-a-dim); color: var(--node-a); }
+.tag--b { background: var(--node-b-dim); color: var(--node-b); }
+.tag--c { background: var(--node-c-dim); color: var(--node-c); }
+</style>
+</head>
+<body>
+
+<h1>That's the clearest picture yet</h1>
+
+<p>
+  So the correct layout is: tunnel → firewall (vertical face at the front) → 
+  dash sits higher with an overhang above. The tray sits on the tunnel and its
+  <strong>forward-most wall presses against the firewall</strong>, using the same
+  velcro attachment as the fusebox cover.
+</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 480 240" xmlns="http://www.w3.org/2000/svg">
+    <!-- Corrected labels -->
+    <text x="240" y="16" text-anchor="middle" font-family="var(--font-mono)" font-size="10" fill="var(--text-dim)">CORRECTED SIDE VIEW</text>
+
+    <!-- Dash (higher up) -->
+    <rect x="60" y="5" width="20" height="80" rx="2" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+    <text x="70" y="50" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-a)" transform="rotate(-90,70,50)">DASH</text>
+
+    <!-- Dash overhang -->
+    <rect x="80" y="5" width="50" height="12" rx="2" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1"/>
+    <text x="105" y="15" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--node-a)">overhang</text>
+
+    <!-- Firewall (vertical) -->
+    <rect x="120" y="12" width="16" height="160" rx="2" fill="var(--node-d-dim)" stroke="var(--node-d)" stroke-width="2"/>
+    <text x="128" y="100" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-d)" transform="rotate(-90,128,100)">FIREWALL</text>
+
+    <!-- Tunnel (horizontal, going back from firewall) -->
+    <rect x="136" y="150" width="280" height="24" rx="3" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="2"/>
+    <text x="300" y="167" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-b)">TRANSMISSION TUNNEL</text>
+
+    <!-- Tray -->
+    <rect x="140" y="120" width="140" height="30" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="2"/>
+    <text x="210" y="140" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--node-c)">TRAY</text>
+
+    <!-- Lid (ghosted) -->
+    <rect x="140" y="106" width="140" height="14" rx="3" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1" stroke-dasharray="4,3" opacity="0.6"/>
+    <text x="210" y="117" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-c)" opacity="0.6">lid (option B)</text>
+
+    <!-- THE VELCRO — tray front wall to firewall -->
+    <rect x="135" y="120" width="6" height="30" rx="1" fill="#d4a017" stroke="#b8860b" stroke-width="1"/>
+    <text x="108" y="150" text-anchor="end" font-family="var(--font-mono)" font-size="8" fill="#b8860b">VELCRO HERE</text>
+    <path d="M138,125 L125,125" stroke="#b8860b" stroke-width="1" stroke-dasharray="3,2" marker-end="url(#arrowr)"/>
+
+    <!-- Force arrows showing why it works -->
+    <text x="108" y="175" text-anchor="end" font-family="var(--font-mono)" font-size="6" fill="var(--text-dim)">braking → tray pushes into firewall</text>
+    <text x="108" y="185" text-anchor="end" font-family="var(--font-mono)" font-size="6" fill="var(--text-dim)">(velcro in compression + shear = strong)</text>
+
+    <!-- Fusebox cover reference -->
+    <path d="M340,40 L320,60" stroke="var(--accent)" stroke-width="1" stroke-dasharray="3,2"/>
+    <text x="345" y="45" font-family="var(--font-mono)" font-size="7" fill="var(--accent)">fusebox cover uses</text>
+    <text x="345" y="55" font-family="var(--font-mono)" font-size="7" fill="var(--accent)">same velcro-on-firewall trick</text>
+
+    <defs>
+      <marker id="arrowr" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+        <path d="M0,0 L6,2 L0,4" fill="#b8860b" stroke="none"/>
+      </marker>
+    </defs>
+  </svg>
+</div>
+
+<h2>This is a great solution</h2>
+
+<p>Velcro on the tray's front face against the firewall is smart because:</p>
+
+<ul>
+  <li><strong>The firewall is always there</strong> — it's a fixed reference surface. The tray self-locates just by sliding forward until it touches.</li>
+  <li><strong>Braking loads push into the firewall</strong> — velcro in compression + shear is very strong.</li>
+  <li><strong>Lateral loads</strong> — a couple of Dual Lock patches on the tunnel floor under the tray stop side-to-side sliding.</li>
+  <li><strong>No drilling, totally reversible</strong> — same as the factory fusebox cover approach.</li>
+  <li><strong>The velcro takes almost zero peel during normal use</strong> — the tray sits on the tunnel, gravity holds it down, and the firewall stops it sliding forward.</li>
+</ul>
+
+<p>For the tunnel floor, I'd use <strong>Dual Lock</strong> (not standard velcro) — it's more rigid in shear and doesn't let the tray "rock" on the fuzzy loop pile. The front wall can use standard velcro (hook side on the tray, loop on the firewall, or vice versa) to match whatever the fusebox cover uses.</p>
+
+<div class="callout">
+  <strong>Question:</strong> Is the fusebox cover using industrial velcro (<strong>3M Dual Lock</strong> or similar) or standard fabric hook-and-loop? If you can snap a photo of the fusebox cover attachment, I can match the same product and interface thickness in the OpenSCAD model.
+</div>
+
+<h2>Proposed OpenSCAD structure</h2>
+
+<p style="font-family:var(--font-mono);font-size:0.85rem;background:var(--surface);padding:16px;border-radius:8px;border:1px solid var(--blueprint-line);">
+<strong style="color:var(--node-a);font-family:var(--font-body);">Tray.scad</strong><br>
+<br>
+// TUNNEL INTERFACE<br>
+tunnel_w       = ?;    // width at firewall face<br>
+tunnel_taper   = ?;    // narrower at shifter?<br>
+firewall_angle = ?;    // is the firewall vertical or raked?<br>
+<br>
+// TRAY GEOMETRY<br>
+tray_length    = ?;    // from firewall back to shifter clearance<br>
+tray_depth     = ?;    // front-to-back<br>
+wall           = 3;    // wall thickness<br>
+floor_t        = 3;    // floor thickness<br>
+side_h         = 25;   // side wall height<br>
+<br>
+// MOUNTING<br>
+velcro_thick   = 2;    // velcro/dual-lock compressed thickness<br>
+firewall_grip  = 0.5;  // interference fit against firewall (mm)<br>
+<br>
+// LID (Option B)<br/>
+lid_clear      = 0.4;  // sliding clearance for lid<br/>
+lid_type       = "dovetail"; // "dovetail" | "hinge" | "friction"<br>
+</p>
+
+<p style="margin-top:24px;font-size:1.05rem;font-weight:500;">Does the fusebox-cover attachment use standard velcro or the stiffer mushroom-head Dual Lock stuff? That'll decide the clearance gap on the front wall.</p>
+
+</body>
+</html>

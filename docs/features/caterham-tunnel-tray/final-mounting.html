@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham Tunnel Tray — Final Mounting Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'DM Mono', monospace;
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --text-faint: #8a9aaa;
+  --accent: #1a6b8a;
+  --accent-dim: rgba(26, 107, 138, 0.08);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.10);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+body { font-family: var(--font-body); background: var(--bg); padding: 32px; max-width: 860px; margin: 0 auto; color: var(--text); line-height: 1.6; }
+h1 { font-size: 1.8rem; }
+h2 { font-size: 1.3rem; margin-top: 32px; color: var(--accent); }
+.sketch { background: var(--surface); border: 1.5px solid var(--blueprint-line-strong); border-radius: 8px; padding: 20px; margin: 16px 0; }
+.sketch svg { width: 100%; height: auto; display: block; }
+.card { background: var(--surface); border: 1px solid var(--blueprint-line); border-radius: 8px; padding: 16px 20px; margin: 12px 0; }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+@media (max-width: 640px) { .grid-2 { grid-template-columns: 1fr; } }
+code { font-family: var(--font-mono); background: var(--accent-dim); padding: 1px 5px; border-radius: 3px; }
+.tag { display: inline-block; font-family: var(--font-mono); font-size: 0.6rem; padding: 2px 7px; border-radius: 3px; background: var(--accent-dim); color: var(--accent); }
+.callout { background: var(--accent-dim); border: 1px solid var(--blueprint-line-strong); border-radius: 6px; padding: 16px 20px; margin: 16px 0; }
+</style>
+</head>
+<body>
+
+<h1>Friction patches + front velcro — that works</h1>
+
+<p>A quick load check so we know it's not going to slide around on track:</p>
+
+<div class="sketch">
+  <svg viewBox="0 0 440 180" xmlns="http://www.w3.org/2000/svg">
+    <!-- Firewall -->
+    <rect x="80" y="10" width="12" height="150" rx="2" fill="none" stroke="#8a3a4a" stroke-width="1.5"/>
+    <text x="86" y="90" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="#8a3a4a" transform="rotate(-90,86,90)">FIREWALL</text>
+    <!-- Tunnel -->
+    <rect x="92" y="140" width="300" height="20" rx="2" fill="none" stroke="#7a5a2a" stroke-width="1.5"/>
+    <text x="242" y="155" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="#7a5a2a">TUNNEL (leather)</text>
+    <!-- Tray -->
+    <rect x="100" y="110" width="150" height="30" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5"/>
+    <text x="175" y="130" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-c)">TRAY</text>
+    <!-- Lid -->
+    <rect x="100" y="97" width="150" height="13" rx="3" fill="none" stroke="var(--accent)" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="175" y="107" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--accent)">lid</text>
+    <!-- Velcro front wall -->
+    <rect x="95" y="110" width="6" height="30" rx="1" fill="#d4a017"/>
+    <text x="70" y="135" text-anchor="end" font-family="var(--font-mono)" font-size="6" fill="#b8860b">velcro → firewall</text>
+    <!-- Friction patches underside -->
+    <rect x="120" y="139" width="18" height="2" rx="1" fill="var(--text-faint)"/>
+    <rect x="155" y="139" width="18" height="2" rx="1" fill="var(--text-faint)"/>
+    <rect x="190" y="139" width="18" height="2" rx="1" fill="var(--text-faint)"/>
+    <rect x="225" y="139" width="18" height="2" rx="1" fill="var(--text-faint)"/>
+    <text x="208" y="150" text-anchor="middle" font-family="var(--font-mono)" font-size="5" fill="var(--text-faint)">silicone/rubber pads (adhesive on tray side only)</text>
+    <!-- Load arrows -->
+    <path d="M175,110 L175,75" stroke="var(--text-dim)" stroke-width="1.2" marker-end="url(#arrow)"/>
+    <text x="190" y="88" font-family="var(--font-mono)" font-size="5" fill="var(--text-dim)">gravity · 500g</text>
+    <path d="M210,138 L240,138" stroke="#d4a017" stroke-width="1" marker-end="url(#arrow)" stroke-dasharray="3,2"/>
+    <text x="245" y="142" font-family="var(--font-mono)" font-size="5" fill="#d4a017">1G cornering → 5N lateral</text>
+    <defs><marker id="arrow" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto"><path d="M0,0 L6,2 L0,4" fill="var(--text-dim)" stroke="none"/></marker></defs>
+  </svg>
+</div>
+
+<div class="grid-2">
+  <div class="card">
+    <h3 style="color:var(--node-c)">Lateral (cornering) ✓</h3>
+    <p style="font-size:0.85rem;">Silicone/rubber on smooth leather has a friction coefficient of <strong>~0.6–0.8</strong>. A loaded tray (~500 g) resists <strong>~3–4 N</strong> of lateral force from friction alone. Plus the front velcro patch also adds lateral shear resistance. 1 G cornering = ~5 N. <strong>Close but adequate.</strong></p>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--node-c)">Braking (forward) ✓✓</h3>
+    <p style="font-size:0.85rem;">The tray pushes <em>into</em> the firewall. The velcro is in pure compression. This is the strongest load case — the tray physically can't move forward.</p>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--node-b)">Acceleration (rearward) ✓</h3>
+    <p style="font-size:0.85rem;">Friction resists rearward sliding. The velcro doesn't help here (it's in peel when pulling away from the firewall). But under acceleration, loads are lower than braking (~0.5 G vs ~1 G).</p>
+  </div>
+  <div class="card">
+    <h3 style="color:var(--node-b)">Lift / knee bump ⚠️</h3>
+    <p style="font-size:0.85rem;">The front velcro sees peel if the rear lifts. Mitigation: <strong>low tapered rear edge</strong> on both tray and lid so knees slide over, not under. A 15–20 mm rear wall with a 45° chamfer is the key detail here.</p>
+  </div>
+</div>
+
+<div class="callout">
+  <strong>Margin of safety:</strong> If lateral grip isn't enough on track, you could add a <strong>single narrow velcro strip</strong> running fore-aft down the centre of the tray floor, with the loop side stuck to the leather (it's just a fuzzy strip, unobtrusive, removable). But try the pure friction approach first — I think it'll be fine for the weight of a phone, wallet and keys.
+</div>
+
+<h2>Friction material options</h2>
+
+<p>All of these stick to the <em>underside</em> of the tray — none touch the leather directly with adhesive:</p>
+
+<table style="width:100%;border-collapse:collapse;font-size:0.85rem;margin:12px 0;">
+  <thead>
+    <tr style="border-bottom:2px solid var(--blueprint-line-strong);">
+      <th style="text-align:left;padding:8px 10px;">Material</th>
+      <th style="text-align:left;padding:8px 10px;">Source</th>
+      <th style="text-align:center;padding:8px 10px;">Friction on leather</th>
+      <th style="text-align:center;padding:8px 10px;">Thickness</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr style="border-bottom:1px solid var(--blueprint-line);">
+      <td style="padding:8px 10px;"><strong>Clear silicone bumpers</strong></td>
+      <td style="padding:8px 10px;">Cabinet-drawer pads, Amazon, hardware store</td>
+      <td style="text-align:center;padding:8px 10px;">High</td>
+      <td style="text-align:center;padding:8px 10px;">2–3 mm</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--blueprint-line);">
+      <td style="padding:8px 10px;"><strong>3M Bumpon™</strong> (SJ5741)</td>
+      <td style="padding:8px 10px;">Self-adhesive rubber bumpers</td>
+      <td style="text-align:center;padding:8px 10px;">Very high</td>
+      <td style="text-align:center;padding:8px 10px;">1.5 mm</td>
+    </tr>
+    <tr style="border-bottom:1px solid var(--blueprint-line);">
+      <td style="padding:8px 10px;"><strong>Silicone sheet / mat</strong></td>
+      <td style="padding:8px 10px;">Shelf liner, cut to shape</td>
+      <td style="text-align:center;padding:8px 10px;">High</td>
+      <td style="text-align:center;padding:8px 10px;">1–2 mm</td>
+    </tr>
+    <tr>
+      <td style="padding:8px 10px;"><strong>EVA foam</strong></td>
+      <td style="padding:8px 10px;">Craft store, thin tool drawer liner</td>
+      <td style="text-align:center;padding:8px 10px;">Medium</td>
+      <td style="text-align:center;padding:8px 10px;">2–3 mm</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><span class="tag">My pick:</span> <strong>3M Bumpon</strong> — they're thin, incredibly grippy, have aggressive adhesive on one side, and come in small dots/strips so you can place them strategically without covering the whole floor. Four 15×15 mm squares at the corners of the tray floor would be plenty.</p>
+
+<h2>Summary of the final design</h2>
+
+<ul>
+  <li><strong>Mounting:</strong> Velcro on tray front wall → firewall. Silicone/rubber friction pads on tray underside → leather tunnel. <em>No adhesive on the leather.</em></li>
+  <li><strong>Design:</strong> Tray + lid (Option B), low profile, tapered rear edge</li>
+  <li><strong>Material:</strong> ASA (matches your other prints)</li>
+  <li><strong>Lid mechanism:</strong> TBD — slide, friction, or hinge</li>
+</ul>
+
+<p style="margin-top:20px;font-size:1.05rem;font-weight:500;">Does that feel right? If yes, the last open question is the lid mechanism — dovetail slide, friction fit, or something else?</p>
+
+</body>
+</html>

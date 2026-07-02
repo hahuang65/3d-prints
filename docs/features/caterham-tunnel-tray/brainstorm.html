@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caterham 420R S3 — Transmission Tunnel Storage Tray · Brainstorm</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   BLUEPRINT AESTHETIC — engineering drawing inspired
+   ========================================================================= */
+:root {
+  --font-body: 'DM Sans', system-ui, sans-serif;
+  --font-mono: 'DM Mono', 'SF Mono', Consolas, monospace;
+
+  --bg: #f4f1ea;
+  --surface: #fcf9f2;
+  --surface-elevated: #fffdf5;
+  --border: rgba(0, 40, 80, 0.10);
+  --border-bright: rgba(0, 40, 80, 0.20);
+  --text: #1a2a3a;
+  --text-dim: #5a6a7a;
+  --text-faint: #8a9aaa;
+  --accent: #1a6b8a;
+  --accent-dim: rgba(26, 107, 138, 0.08);
+  --accent-line: #2a7b9a;
+
+  --node-a: #1a6b8a;
+  --node-a-dim: rgba(26, 107, 138, 0.10);
+  --node-b: #7a5a2a;
+  --node-b-dim: rgba(122, 90, 42, 0.10);
+  --node-c: #4a7a3a;
+  --node-c-dim: rgba(74, 122, 58, 0.10);
+  --node-d: #8a3a4a;
+  --node-d-dim: rgba(138, 58, 74, 0.10);
+
+  --grid: rgba(26, 107, 138, 0.06);
+  --blueprint-line: rgba(26, 107, 138, 0.15);
+  --blueprint-line-strong: rgba(26, 107, 138, 0.30);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #131d26;
+    --surface: #1a2630;
+    --surface-elevated: #1f2c38;
+    --border: rgba(100, 180, 220, 0.10);
+    --border-bright: rgba(100, 180, 220, 0.18);
+    --text: #d8e2ec;
+    --text-dim: #8a9aaa;
+    --text-faint: #5a6a7a;
+    --accent: #5ab8d8;
+    --accent-dim: rgba(90, 184, 216, 0.08);
+    --accent-line: #4aa8c8;
+
+    --node-a: #5ab8d8;
+    --node-a-dim: rgba(90, 184, 216, 0.10);
+    --node-b: #d8a85a;
+    --node-b-dim: rgba(216, 168, 90, 0.10);
+    --node-c: #7ac86a;
+    --node-c-dim: rgba(122, 200, 106, 0.10);
+    --node-d: #d86a7a;
+    --node-d-dim: rgba(216, 106, 122, 0.10);
+
+    --grid: rgba(90, 184, 216, 0.04);
+    --blueprint-line: rgba(90, 184, 216, 0.12);
+    --blueprint-line-strong: rgba(90, 184, 216, 0.25);
+  }
+}
+
+/* ---- Base ---- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text);
+  background: var(--bg);
+  background-image:
+    /* Blueprint grid pattern */
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 24px 32px 64px;
+  overflow-x: hidden;
+}
+
+/* Blueprint border frame */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 12px;
+  border: 1.5px solid var(--blueprint-line);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '●  BRAINSTORM  ●  V0.1  ●  ' attr(data-date);
+  position: fixed;
+  bottom: 16px;
+  right: 24px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-faint);
+  letter-spacing: 2px;
+  z-index: 0;
+}
+
+body { --date: '2026-07-01'; }
+
+/* ---- Typography ---- */
+h1, h2, h3, h4 {
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.15em;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--blueprint-line-strong);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+h2 .section-number {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 500;
+  padding: 2px 8px;
+  border: 1.5px solid var(--accent-line);
+  border-radius: 4px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--accent);
+}
+
+h4 {
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 0.3em;
+}
+
+p { margin-bottom: 0.8em; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+a:hover { color: var(--accent-line); }
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.82em;
+  background: var(--accent-dim);
+  color: var(--accent);
+  padding: 1px 5px;
+  border-radius: 3px;
+}
+
+/* ---- Header ---- */
+.hero {
+  margin-bottom: 40px;
+  padding: 32px 32px 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.hero__subtitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--text-dim);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  max-width: 780px;
+}
+
+.hero__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 40px;
+  margin-top: 16px;
+  font-size: 0.88rem;
+  color: var(--text-dim);
+}
+
+.hero__meta dt {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--text-faint);
+}
+
+.hero__meta dd {
+  font-weight: 500;
+  color: var(--text);
+}
+
+/* ---- Cards ---- */
+.ve-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 20px 24px;
+  position: relative;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.ve-card:hover {
+  border-color: var(--blueprint-line-strong);
+  box-shadow: 0 2px 12px rgba(26, 107, 138, 0.06);
+}
+
+.ve-card--accent-a { border-left: 3px solid var(--node-a); }
+.ve-card--accent-b { border-left: 3px solid var(--node-b); }
+.ve-card--accent-c { border-left: 3px solid var(--node-c); }
+.ve-card--accent-d { border-left: 3px solid var(--node-d); }
+
+.ve-card--elevated {
+  background: var(--surface-elevated);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.ve-card__label {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--node-a);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ve-card__label::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+/* ---- Grid layouts ---- */
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 20px;
+}
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 16px;
+}
+
+.grid-2-1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+.grid-1-2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 20px;
+}
+
+.grid > *, .flex > *, [style*="display: grid"] > *, [style*="display: flex"] > * {
+  min-width: 0;
+}
+
+@media (max-width: 900px) {
+  .grid-2, .grid-3, .grid-4, .grid-2-1, .grid-1-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- Section ---- */
+.section {
+  margin-bottom: 48px;
+  position: relative;
+  z-index: 1;
+}
+
+.section__intro {
+  max-width: 720px;
+  color: var(--text-dim);
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+}
+
+/* ---- Lists ---- */
+.ve-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.ve-list li {
+  padding: 6px 0 6px 20px;
+  position: relative;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.ve-list li::before {
+  content: '›';
+  position: absolute;
+  left: 2px;
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.ve-list--tight li { padding: 3px 0 3px 18px; }
+
+.ve-list code {
+  font-size: 0.82em;
+}
+
+/* ---- Dimension callout ---- */
+.dim-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--blueprint-line);
+  font-size: 0.9rem;
+}
+
+.dim-row:last-child { border-bottom: none; }
+
+.dim-row__label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+.dim-row__value {
+  font-weight: 600;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}
+
+/* ---- Decision matrix ---- */
+.matrix {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+.matrix th {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 2px solid var(--blueprint-line-strong);
+  color: var(--text-dim);
+}
+
+.matrix td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--blueprint-line);
+  vertical-align: top;
+}
+
+.matrix tr:last-child td { border-bottom: none; }
+
+.matrix .tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+}
+
+.tag--a { background: var(--node-a-dim); color: var(--node-a); }
+.tag--b { background: var(--node-b-dim); color: var(--node-b); }
+.tag--c { background: var(--node-c-dim); color: var(--node-c); }
+.tag--d { background: var(--node-d-dim); color: var(--node-d); }
+.tag--muted { background: var(--blueprint-line); color: var(--text-dim); }
+
+/* ---- Sketch box ---- */
+.sketch-zone {
+  background: var(--surface-elevated);
+  border: 1.5px solid var(--blueprint-line-strong);
+  border-radius: 6px;
+  padding: 20px;
+  position: relative;
+  min-height: 180px;
+  overflow: hidden;
+}
+
+.sketch-zone__label {
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  font-family: var(--font-mono);
+  font-size: 0.55rem;
+  color: var(--text-faint);
+  letter-spacing: 1px;
+}
+
+.sketch-zone svg {
+  width: 100%;
+  height: auto;
+}
+
+/* ---- Callout block ---- */
+.callout {
+  background: var(--accent-dim);
+  border: 1px solid var(--blueprint-line-strong);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  font-size: 0.9rem;
+}
+
+.callout__label {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+/* ---- Staggered entrance ---- */
+.ve-card, .section h2, .section__intro {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeUp 0.5s ease-out forwards;
+}
+
+.ve-card:nth-child(1) { animation-delay: 0.05s; }
+.ve-card:nth-child(2) { animation-delay: 0.10s; }
+.ve-card:nth-child(3) { animation-delay: 0.15s; }
+.ve-card:nth-child(4) { animation-delay: 0.20s; }
+.ve-card:nth-child(5) { animation-delay: 0.25s; }
+.ve-card:nth-child(6) { animation-delay: 0.30s; }
+.ve-card:nth-child(7) { animation-delay: 0.35s; }
+.ve-card:nth-child(8) { animation-delay: 0.40s; }
+
+.section:nth-child(2) h2 { animation-delay: 0.10s; }
+.section:nth-child(3) h2 { animation-delay: 0.20s; }
+.section:nth-child(4) h2 { animation-delay: 0.30s; }
+.section:nth-child(5) h2 { animation-delay: 0.40s; }
+.section:nth-child(6) h2 { animation-delay: 0.50s; }
+.section:nth-child(7) h2 { animation-delay: 0.60s; }
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ve-card, .section h2, .section__intro { opacity: 1; transform: none; animation: none; }
+}
+
+/* ---- Inline SVG dimension arrows ---- */
+.dim-arrow {
+  fill: none;
+  stroke: var(--accent-line);
+  stroke-width: 1.2;
+  marker-end: url(#arrowhead);
+  marker-start: url(#arrowhead-start);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+  body { padding: 12px 16px 40px; }
+  body::before { inset: 6px; }
+  .hero { padding: 20px 16px 20px; }
+  .hero h1 { font-size: 1.8rem; }
+  .ve-card { padding: 16px; }
+  .grid-2, .grid-3, .grid-4, .grid-2-1, .grid-1-2 { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body data-date="2026-07-01">
+
+<!-- ============================================================ SVG Defs -->
+<svg style="position:absolute;width:0;height:0" aria-hidden="true">
+  <defs>
+    <marker id="arrowhead" markerWidth="6" markerHeight="4" refX="5" refY="2" orient="auto">
+      <path d="M0,0 L6,2 L0,4" fill="var(--accent-line)" stroke="none"/>
+    </marker>
+    <marker id="arrowhead-start" markerWidth="6" markerHeight="4" refX="1" refY="2" orient="auto">
+      <path d="M6,0 L0,2 L6,4" fill="var(--accent-line)" stroke="none"/>
+    </marker>
+  </defs>
+</svg>
+
+<!-- ============================================================ HERO -->
+<header class="hero">
+  <div class="hero__subtitle">Design Brainstorm · V0.1</div>
+  <h1>Transmission Tunnel<br>Storage Tray</h1>
+  <p style="max-width:640px;font-size:1.05rem;color:var(--text-dim);margin-top:8px;">
+    For a <strong>Caterham 420R S3</strong>, positioned on top of the transmission tunnel, pushed as far forward as possible — under the dashboard overhang.
+  </p>
+  <dl class="hero__meta">
+    <div>
+      <dt>Vehicle</dt>
+      <dd>Caterham 420R · S3 (narrow body)</dd>
+    </div>
+    <div>
+      <dt>Location</dt>
+      <dd>Transmission tunnel top · forward zone</dd>
+    </div>
+    <div>
+      <dt>Design language</dt>
+      <dd>Parametric OpenSCAD · ASA/PETG</dd>
+    </div>
+    <div>
+      <dt>Status</dt>
+      <dd>Brainstorming — open decisions</dd>
+    </div>
+  </dl>
+</header>
+
+<!-- ============================================================ 1. CONTEXT -->
+<section class="section">
+  <h2><span class="section-number">01</span> The Space</h2>
+  <p class="section__intro">
+    The S3 transmission tunnel tapers from the bulkhead rearward. At the forward end — just behind the dash — it's at its narrowest and sits between the driver's and passenger's knees. Understanding the geometry here is the first design constraint.
+  </p>
+
+  <div class="grid-2-1">
+    <!-- Sketch -->
+    <div class="ve-card ve-card--elevated">
+      <div class="ve-card__label">Tunnel plan view (conceptual)</div>
+      <div class="sketch-zone">
+        <svg viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg">
+          <!-- Dash line -->
+          <line x1="20" y1="30" x2="380" y2="30" stroke="var(--blueprint-line-strong)" stroke-width="2" stroke-dasharray="6,4"/>
+          <text x="200" y="22" text-anchor="middle" font-family="var(--font-mono)" font-size="9" fill="var(--text-faint)">DASH FACE (firewall)</text>
+
+          <!-- Tunnel shape (tapered) -->
+          <path d="M140,200 L120,50 L280,50 L260,200 Z" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+
+          <!-- Tray zone -->
+          <rect x="155" y="55" width="90" height="70" rx="4" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5" stroke-dasharray="4,3"/>
+          <text x="200" y="98" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-c)">TRAY ZONE</text>
+
+          <!-- Shifter position -->
+          <circle cx="200" cy="170" r="14" fill="none" stroke="var(--node-d)" stroke-width="1.5"/>
+          <text x="200" y="174" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-d)">SHIFTER</text>
+          <path d="M200,184 L200,210" stroke="var(--node-d)" stroke-width="1.5" stroke-dasharray="3,2"/>
+
+          <!-- Dimension arrows -->
+          <line x1="120" y1="48" x2="120" y2="200" stroke="var(--accent-line)" stroke-width="1" marker-start="url(#arrowhead-start)" marker-end="url(#arrowhead)"/>
+          <text x="110" y="128" transform="rotate(-90,110,128)" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--accent)">tunnel length to shifter</text>
+
+          <line x1="140" y1="215" x2="260" y2="215" stroke="var(--accent-line)" stroke-width="1" marker-start="url(#arrowhead-start)" marker-end="url(#arrowhead)"/>
+          <text x="200" y="228" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--accent)">tunnel width at base</text>
+
+          <line x1="280" y1="50" x2="280" y2="200" stroke="var(--accent-line)" stroke-width="1" marker-start="url(#arrowhead-start)" marker-end="url(#arrowhead)"/>
+          <text x="298" y="130" transform="rotate(-90,298,130)" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--accent)">seat belt / side clearance</text>
+
+          <!-- Compass -->
+          <text x="18" y="60" font-family="var(--font-mono)" font-size="7" fill="var(--text-faint)">FWD →</text>
+        </svg>
+        <div class="sketch-zone__label">plan view · not to scale</div>
+      </div>
+    </div>
+
+    <!-- Key dimensions card -->
+    <div class="ve-card">
+      <div class="ve-card__label">Unknowns to measure</div>
+      <p style="font-size:0.88rem;color:var(--text-dim);margin-bottom:10px;">Grab these from the car before modelling — every S3 variant differs slightly.</p>
+      <div style="margin-top:4px;">
+        <div class="dim-row">
+          <span class="dim-row__label">Tunnel width at dash face</span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label">Tunnel width at shifter</span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label">Dash overhang depth</span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label">Dash ground clearance (tunnel→dash bottom)</span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label">Tunnel top profile (flat / crowned / radius)</span>
+          <span class="dim-row__value">? mm R</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label">Shifter hole centre → dash face</span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label">Handbrake location (tunnel or side sill?)</span>
+          <span class="dim-row__value">? </span>
+        </div>
+      </div>
+      <div class="callout" style="margin:12px 0 0;">
+        <div class="callout__label">Tip</div>
+        Use a caliper + masking-tape grid on the tunnel to map the contour. A paper template cut to shape is cheap insurance.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 2. CLEARANCES -->
+<section class="section">
+  <h2><span class="section-number">02</span> Clearances &amp; Conflicts</h2>
+  <p class="section__intro">
+    The forward tunnel zone is tight. These are the things the tray must <em>not</em> interfere with.
+  </p>
+
+  <div class="grid-2">
+    <div class="ve-card ve-card--accent-d">
+      <div class="ve-card__label">Must clear</div>
+      <ul class="ve-list">
+        <li><strong>Gear shifter:</strong> The lever sweeps rearward from its pivot. The tray must end before the pivot, or notch around it.</li>
+        <li><strong>Dashboard underside:</strong> The dash wraps down and rearward. The tray slides under this overhang — measure the gap.</li>
+        <li><strong>Heater controls / wiring:</strong> If the car has a heater, the control cables and fan unit live under the dash centre.</li>
+        <li><strong>Knee clearance:</strong> Driver's right knee and passenger's left knee bracket the tunnel. The tray shouldn't add width that intrudes.</li>
+        <li><strong>Handbrake:</strong> On S3 cars this is often on the left sill or tunnel-side. Verify position.</li>
+        <li><strong>Harness slots:</strong> If you have aftermarket seats with 6-point harnesses, the tunnel-side straps route around the tunnel.</li>
+      </ul>
+    </div>
+
+    <div class="ve-card ve-card--accent-b">
+      <div class="ve-card__label">Environmental</div>
+      <ul class="ve-list">
+        <li><strong>Heat:</strong> The transmission tunnel gets hot — especially the 420R's 2.0L Duratec + gearbox. ASA or PETG (as in your other designs) is the right call. No PLA.</li>
+        <li><strong>Vibration:</strong> Live axle + cycle wings = a lot of vibration. Items in the tray will rattle. Consider a lined / grippy floor or a lid.</li>
+        <li><strong>Sun exposure:</strong> If the tray peeks out from under the dash, it'll see direct sun. UV-stable materials matter.</li>
+        <li><strong>Water / damp:</strong> Caterhams are not weather sealed. The tray should drain or have raised edges so a spilled drink doesn't pool.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 3. DESIGN OPTIONS -->
+<section class="section">
+  <h2><span class="section-number">03</span> Design Directions</h2>
+  <p class="section__intro">
+    Three distinct approaches, each with a different complexity-to-usefulness tradeoff.
+  </p>
+
+  <div class="grid-3">
+    <!-- Option A -->
+    <div class="ve-card ve-card--elevated ve-card--accent-a">
+      <div class="ve-card__label" style="color:var(--node-a)">Option A · Simple Tray</div>
+      <p style="font-size:0.88rem;font-weight:500;margin-bottom:6px;">Flat-bottomed dish, contoured to the tunnel profile.</p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li>Single-piece, no moving parts</li>
+        <li>Low side walls (15–25 mm) to minimise knee interference</li>
+        <li>Grippy floor pattern (chequered / ribs) to stop sliding</li>
+        <li>Attaches via industrial-strength dual-lock (3M) or velcro</li>
+        <li>Shallow phone/keys/glasses tray — no lid</li>
+      </ul>
+      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--c">Print: 1 piece</span>
+        <span class="tag tag--c">No hardware</span>
+        <span class="tag tag--b">Supports? maybe</span>
+      </div>
+    </div>
+
+    <!-- Option B -->
+    <div class="ve-card ve-card--elevated ve-card--accent-b">
+      <div class="ve-card__label" style="color:var(--node-b)">Option B · Tray with Lid</div>
+      <p style="font-size:0.88rem;font-weight:500;margin-bottom:6px;">Hinged or sliding lid keeps items contained.</p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li>Two-piece: tray base + lid (sliding dovetail or hinge)</li>
+        <li>Lid prevents items flying out during spirited driving</li>
+        <li>Optional latch (friction-fit or magnetic catch)</li>
+        <li>Deeper tray (30–40 mm) for wallet, phone, tool roll</li>
+        <li>Lid doubles as an arm-rest pad if flush with the tunnel</li>
+      </ul>
+      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--c">Print: 2 pieces</span>
+        <span class="tag tag--b">Sliding joint</span>
+        <span class="tag tag--c">No hardware</span>
+      </div>
+    </div>
+
+    <!-- Option C -->
+    <div class="ve-card ve-card--elevated ve-card--accent-c">
+      <div class="ve-card__label" style="color:var(--node-c)">Option C · Modular System</div>
+      <p style="font-size:0.88rem;font-weight:500;margin-bottom:6px;">Baseplate + interchangeable inserts.</p>
+      <ul class="ve-list ve-list--tight" style="font-size:0.85rem;">
+        <li>Baseplate permanently mounted to the tunnel (screws or adhesive)</li>
+        <li>Swappable inserts: cup holder, phone mount, tray, tool caddy</li>
+        <li>Dovetail / T-track interface between base and inserts</li>
+        <li>Wiring pass-through in the base for USB charger integration</li>
+        <li>Over-engineered but future-proof </li>
+      </ul>
+      <div style="margin-top:10px;display:flex;gap:6px;flex-wrap:wrap;">
+        <span class="tag tag--b">Print: 3+ pieces</span>
+        <span class="tag tag--d">Complex</span>
+        <span class="tag tag--b">Hardware</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick decision matrix -->
+  <div class="ve-card" style="margin-top:20px;">
+    <div class="ve-card__label">Decision matrix</div>
+    <table class="matrix">
+      <thead>
+        <tr>
+          <th>Criterion</th>
+          <th>Option A · Simple Tray</th>
+          <th>Option B · Lid</th>
+          <th>Option C · Modular</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="font-weight:500;">Print complexity</td>
+          <td><span class="tag tag--c">Low</span> — one piece, no supports</td>
+          <td><span class="tag tag--b">Medium</span> — two parts + joint</td>
+          <td><span class="tag tag--d">High</span> — multiple inserts + tracks</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500;">Item retention</td>
+          <td><span class="tag tag--b">Medium</span> — grippy floor, open top</td>
+          <td><span class="tag tag--c">High</span> — lid contains everything</td>
+          <td><span class="tag tag--b">Medium</span> — depends on insert</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500;">Knee clearance</td>
+          <td><span class="tag tag--c">Best</span> — lowest profile</td>
+          <td><span class="tag tag--b">Good</span> — lid adds ~3 mm</td>
+          <td><span class="tag tag--b">Good</span> — baseplate is thin</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500;">Mounting effort</td>
+          <td><span class="tag tag--c">Minimal</span> — stick-on dual lock</td>
+          <td><span class="tag tag--c">Minimal</span> — same</td>
+          <td><span class="tag tag--b">Moderate</span> — screws recommended</td>
+        </tr>
+        <tr>
+          <td style="font-weight:500;">Ease of iteration</td>
+          <td><span class="tag tag--c">High</span> — tweak and reprint</td>
+          <td><span class="tag tag--b">Medium</span> — two mating parts</td>
+          <td><span class="tag tag--d">Low</span> — interface lock-in</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ============================================================ 4. MOUNTING -->
+<section class="section">
+  <h2><span class="section-number">04</span> Mounting Strategies</h2>
+  <p class="section__intro">
+    The tunnel cover is usually powder-coated aluminium or gel-coated fibre glass. Whatever you choose needs to hold under cornering loads without damaging the tunnel.
+  </p>
+
+  <div class="grid-2">
+    <div class="ve-card ve-card--accent-a">
+      <div class="ve-card__label">Adhesive / Dual Lock</div>
+      <ul class="ve-list ve-list--tight">
+        <li><strong>3M™ Dual Lock™</strong> (SJ3550 series) — the heavy-duty mushroom-head fastener. Holds ~5 kg per 25×25 mm patch in shear. Works on painted aluminium and gel coat.</li>
+        <li><strong>VHB tape</strong> (3M 4950) — permanent bond. Good for a baseplate. Requires isopropyl wipe + 24 h cure.</li>
+        <li><strong>Best for:</strong> Options A and B. Zero modification to the car. Removable.</li>
+        <li><strong>Watch out:</strong> Gel coat can delaminate if you pull too hard. Warm the tape before removal.</li>
+      </ul>
+      <div class="callout" style="margin:10px 0 0;">
+        <div class="callout__label">Recommendation</div>
+        Dual lock corners on the tray floor. The shear load during cornering is handled by the large surface area, not peel.
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--accent-b">
+      <div class="ve-card__label">Mechanical / Clamp</div>
+      <ul class="ve-list ve-list--tight">
+        <li><strong>Screw into tunnel:</strong> Only works if you can access the underside (centre tunnel panel often removable). M4 or M5 button-head screws into rivnuts or self-tappers.</li>
+        <li><strong>Clamp around tunnel flanges:</strong> Some tunnels have a lip where the cover meets the floor. A C-channel clamp could grip that edge without drilling.</li>
+        <li><strong>Dash-bracket:</strong> A tab that reaches forward and bolts to the underside of the dash frame (if accessible).</li>
+        <li><strong>Best for:</strong> Option C (permanent baseplate) or high-load items.</li>
+        <li><strong>Watch out:</strong> Drilling into the tunnel can let in water or fumes. Seal any holes.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Cross-section sketch -->
+  <div class="grid-2" style="margin-top:16px;">
+    <div class="ve-card ve-card--elevated">
+      <div class="ve-card__label">Section A-A (conceptual)</div>
+      <div class="sketch-zone" style="min-height:160px;">
+        <svg viewBox="0 0 380 160" xmlns="http://www.w3.org/2000/svg">
+          <!-- Tunnel profile (crowned) -->
+          <path d="M30,130 Q140,100 190,105 Q240,100 350,130" fill="var(--node-a-dim)" stroke="var(--node-a)" stroke-width="1.5"/>
+          <text x="190" y="145" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--text-faint)">tunnel cross-section</text>
+
+          <!-- Tray on top -->
+          <rect x="120" y="80" width="140" height="24" rx="3" fill="var(--node-c-dim)" stroke="var(--node-c)" stroke-width="1.5"/>
+          <text x="190" y="96" text-anchor="middle" font-family="var(--font-mono)" font-size="7" fill="var(--node-c)">TRAY</text>
+
+          <!-- Dual lock dots -->
+          <circle cx="150" cy="104" r="2.5" fill="var(--node-d)"/>
+          <circle cx="190" cy="105" r="2.5" fill="var(--node-d)"/>
+          <circle cx="230" cy="104" r="2.5" fill="var(--node-d)"/>
+          <text x="190" y="118" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-d)">dual lock patches</text>
+
+          <!-- Lid ghost -->
+          <rect x="120" y="68" width="140" height="12" rx="2" fill="var(--node-b-dim)" stroke="var(--node-b)" stroke-width="1" stroke-dasharray="3,2"/>
+          <text x="190" y="77" text-anchor="middle" font-family="var(--font-mono)" font-size="6" fill="var(--node-b)">lid (option B)</text>
+
+          <!-- Dimension -->
+          <line x1="118" y1="58" x2="118" y2="130" stroke="var(--accent-line)" stroke-width="0.8" marker-start="url(#arrowhead-start)" marker-end="url(#arrowhead)"/>
+          <text x="108" y="100" text-anchor="end" font-family="var(--font-mono)" font-size="6" fill="var(--accent)">H</text>
+
+          <!-- Knee ghost -->
+          <path d="M350,50 Q330,85 340,130" fill="none" stroke="var(--text-faint)" stroke-width="1" stroke-dasharray="4,3"/>
+          <text x="355" y="65" font-family="var(--font-mono)" font-size="6" fill="var(--text-faint)">knee zone</text>
+        </svg>
+        <div class="sketch-zone__label">section · tunnel crowned profile</div>
+      </div>
+    </div>
+
+    <div class="ve-card">
+      <div class="ve-card__label">Tunnel contour — measurement method</div>
+      <p style="font-size:0.85rem;color:var(--text-dim);margin-bottom:10px;">
+        The tunnel top may be flat, crowned, or a compound radius. Here's how to capture it for the OpenSCAD model:
+      </p>
+      <ol style="font-size:0.85rem;padding-left:20px;color:var(--text);">
+        <li style="margin-bottom:6px;"><strong>Profile gauge</strong> — press a contour gauge against the tunnel top to capture the cross-section, then trace onto paper.</li>
+        <li style="margin-bottom:6px;"><strong>Cardboard template</strong> — notch a piece of corrugated cardboard to the tunnel width, slide it forward until it contacts the dash. Trace the profile.</li>
+        <li style="margin-bottom:6px;"><strong>Calipers at stations</strong> — measure width at 20 mm intervals along the tunnel length. Plot the taper.</li>
+        <li style="margin-bottom:6px;"><strong>Photogrammetry</strong> — take a side-by-side photo with a scale reference; trace in CAD.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 5. FEATURES -->
+<section class="section">
+  <h2><span class="section-number">05</span> What Goes In It?</h2>
+  <p class="section__intro">
+    Defining the payload drives the depth, width, and compartment layout.
+  </p>
+
+  <div class="grid-3">
+    <div class="ve-card ve-card--accent-c">
+      <div class="ve-card__label">Everyday Carry</div>
+      <ul class="ve-list ve-list--tight">
+        <li><strong>Phone</strong> — iPhone Pro Max or Android equivalent (~78×160 mm)</li>
+        <li><strong>Wallet / card holder</strong> (~90×60 mm)</li>
+        <li><strong>Key fob + house keys</strong></li>
+        <li><strong>Sunglasses</strong> in a case (150×55×40 mm typical)</li>
+        <li><strong>Garage / gate remote</strong></li>
+      </ul>
+      <div style="margin-top:8px;font-size:0.82rem;color:var(--text-dim);">
+        <span class="tag tag--a">Zone A: shallow front</span> — phone + keys
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--accent-b">
+      <div class="ve-card__label">Track Day / Road Trip</div>
+      <ul class="ve-list ve-list--tight">
+        <li><strong>Tyre pressure gauge</strong></li>
+        <li><strong>Microfibre cloth</strong> (visor / helmet wipe)</li>
+        <li><strong>Earplugs</strong> — small tin or pod</li>
+        <li><strong>USB cable + 12V charger</strong> (if the tray integrates a passthrough)</li>
+        <li><strong>Registration / insurance card</strong> — small envelope slot</li>
+      </ul>
+      <div style="margin-top:8px;font-size:0.82rem;color:var(--text-dim);">
+        <span class="tag tag--a">Zone B: deeper rear</span> — bulkier items
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--accent-d">
+      <div class="ve-card__label">Nice-to-have integrations</div>
+      <ul class="ve-list ve-list--tight">
+        <li><strong>USB-C charger port</strong> — panel-mount socket wired to the dash loom</li>
+        <li><strong>Phone charging pad</strong> — Qi coil embedded in the tray floor</li>
+        <li><strong>Pen / tyre scribe slot</strong> — dedicated long-narrow groove</li>
+        <li><strong>Coin / toll-tag pocket</strong> — small split compartment</li>
+        <li><strong>GoPro mount</strong> — threaded insert on the front face for video</li>
+      </ul>
+      <div style="margin-top:8px;font-size:0.82rem;color:var(--text-dim);">
+        <span class="tag tag--d">V2 features</span> — don't block the first print
+      </div>
+    </div>
+  </div>
+
+  <!-- Compartment sketch -->
+  <div class="ve-card ve-card--elevated" style="margin-top:16px;">
+    <div class="ve-card__label">Suggested internal layout</div>
+    <div class="sketch-zone" style="min-height:120px;">
+      <svg viewBox="0 0 380 100" xmlns="http://www.w3.org/2000/svg">
+        <!-- Tray top-down -->
+        <rect x="40" y="15" width="300" height="70" rx="6" fill="var(--surface)" stroke="var(--node-a)" stroke-width="1.5"/>
+
+        <!-- Divider lines -->
+        <line x1="140" y1="15" x2="140" y2="85" stroke="var(--blueprint-line-strong)" stroke-width="1.2" stroke-dasharray="4,3"/>
+        <line x1="280" y1="15" x2="280" y2="85" stroke="var(--blueprint-line-strong)" stroke-width="1.2" stroke-dasharray="4,3"/>
+
+        <!-- Zone labels -->
+        <text x="90" y="55" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-c)">phone + keys</text>
+        <text x="210" y="55" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-b)">wallet + glasses</text>
+        <text x="310" y="55" text-anchor="middle" font-family="var(--font-mono)" font-size="8" fill="var(--node-d)">tools + cables</text>
+
+        <!-- Divider label -->
+        <text x="40" y="98" font-family="var(--font-mono)" font-size="6" fill="var(--text-faint)">adjustable dividers (slot-in)</text>
+      </svg>
+      <div class="sketch-zone__label">plan · compartment layout</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ 6. PARAMETRIC MODEL -->
+<section class="section">
+  <h2><span class="section-number">06</span> OpenSCAD Parameter Map</h2>
+  <p class="section__intro">
+    Following the pattern from your existing designs, the tray should be fully parametric with a clear set of derived dimensions.
+  </p>
+
+  <div class="grid-2">
+    <div class="ve-card ve-card--accent-a">
+      <div class="ve-card__label">Tunnel interface parameters</div>
+      <div style="margin-top:4px;">
+        <div class="dim-row">
+          <span class="dim-row__label"><code>tunnel_w_front</code></span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>tunnel_w_rear</code></span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>tunnel_crown_r</code></span>
+          <span class="dim-row__value">? mm (or flat)</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>tray_length</code></span>
+          <span class="dim-row__value">? mm (to shifter)</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>dash_overhang</code></span>
+          <span class="dim-row__value">? mm</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ve-card ve-card--accent-b">
+      <div class="ve-card__label">Tray geometry parameters</div>
+      <div style="margin-top:4px;">
+        <div class="dim-row">
+          <span class="dim-row__label"><code>wall</code></span>
+          <span class="dim-row__value">wall thickness (mm)</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>floor_t</code></span>
+          <span class="dim-row__value">floor thickness (mm)</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>side_h</code></span>
+          <span class="dim-row__value">side wall height (mm)</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>taper</code></span>
+          <span class="dim-row__value">match tunnel taper? Y/N</span>
+        </div>
+        <div class="dim-row">
+          <span class="dim-row__label"><code>grip_clear</code></span>
+          <span class="dim-row__value">fit clearance (mm)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="callout">
+    <div class="callout__label">Derived dimensions pattern</div>
+    <p style="font-size:0.88rem;">
+      <code>tray_w = tunnel_w_front - 2*wall - 2*grip_clear</code><br>
+      <code>tray_d = tunnel_crown_r &lt; 0 ? tunnel_crown_r : ???</code> (crown offset mapped as a difference from a flat base)<br>
+      <code>footprint = tray_w × tray_length with optional taper</code>
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================ 7. NEXT STEPS -->
+<section class="section">
+  <h2><span class="section-number">07</span> Decisions Needed</h2>
+  <p class="section__intro">
+    Before diving into OpenSCAD, we need to converge on a few key choices.
+  </p>
+
+  <div class="grid-2">
+    <div class="ve-card ve-card--elevated ve-card--accent-a">
+      <div class="ve-card__label">To decide now</div>
+      <ul class="ve-list" style="font-size:0.9rem;">
+        <li><strong>Which design direction?</strong> Simple tray (A), lid (B), or modular (C)?</li>
+        <li><strong>What's the primary use?</strong> Daily phone/keys, or track-day tool caddy?</li>
+        <li><strong>Do you want a phone charge passthrough?</strong> (USB-C hole or Qi pad pocket)</li>
+        <li><strong>Colour?</strong> Match the tunnel (black/grey) or contrast (raw ASA, red accent)?</li>
+        <li><strong>Surface finish?</strong> Textured top (cosmetic) vs smooth print face-down?</li>
+      </ul>
+    </div>
+
+    <div class="ve-card ve-card--accent-d">
+      <div class="ve-card__label">Measurements to take</div>
+      <ul class="ve-list" style="font-size:0.9rem;">
+        <li>Tunnel width at the dash face (front) and at the shifter (rear)</li>
+        <li>Tunnel crown / profile cross-section</li>
+        <li>Dash overhang depth and ground clearance</li>
+        <li>Shifter pivot location relative to dash face</li>
+        <li>Handbrake location (confirm it's not on the tunnel)</li>
+        <li>Knee clearance — sit in the car, mark where your knees land</li>
+        <li>Heater / wiring obstruction under the dash centre</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="ve-card" style="margin-top:16px;border:2px dashed var(--accent-line);background:var(--accent-dim);">
+    <div class="ve-card__label" style="color:var(--accent)">Let's talk</div>
+    <p style="font-size:1rem;font-weight:500;">
+      Shoot your thoughts — which direction appeals to you? Any must-have features I've missed? Once we settle on a direction I can draft the parametric OpenSCAD.
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
