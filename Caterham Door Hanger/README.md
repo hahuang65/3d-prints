@@ -20,23 +20,23 @@ Prints as a single piece — one hanger per door.  Print two for a pair.
 
 | Dimension | Value |
 |-----------|-------|
-| Backplate | 137 × 40 × 5 mm (full rectangle, beveled front edges) |
+| Backplate | 174 × 42 × 5 mm (full rectangle, beveled front edges) |
 | Backplate rear (wall side) | Flat — no rounding |
 | Arm shape | J-hook with smooth 45° curved corner |
 | Arm width | 28 mm |
-| Arm thickness | 6.75 mm (cradle diameter + 2 mm) |
-| Arm spacing (centre–centre) | 105.8 mm |
-| Cradle diameter | 4.75 mm |
+| Arm thickness | 9.25 mm (cradle Ø + 4 mm, 2 mm each side) |
+| Arm spacing (centre–centre) | 142.8 mm |
+| Cradle diameter | 5.25 mm |
 | Cradle length (through arm) | 28 mm |
 | Cradle centre from wall | 30 mm |
-| Cradle centre below arm top | 25.4 mm (1 inch) |
-| Material below cradle hole | 2 mm |
+| Cradle centre below arm top | 35.4 mm |
+| Material below cradle hole | ~2 mm |
 | Door–wall gap | ~28 mm |
 | Top screw (Y from centre) | +6.86 mm (6.86 mm above arm attachment) |
-| Bottom screw (Y from centre) | −13.61 mm (6.86 mm below arm attachment bottom) |
+| Bottom screw (Y from centre) | −16.11 mm (6.86 mm below arm attachment bottom) |
 | Backplate front bevel | 1.5 mm, 45° chamfer |
 | Arm edge rounding | 1.5 mm radius (via profile offset) |
-| Print volume | 137 × 46 × 33 mm |
+| Print volume | 174 × 56 × 35 mm |
 
 ---
 
@@ -72,7 +72,7 @@ Prints as a single piece — one hanger per door.  Print two for a pair.
    sit flush with the face.
 5. **Repeat** for the second door.
 6. **Hang the door** by lowering its bottom frame member into both J-hook
-   cradles. The leather trim on the door fits in the 25.4 mm drop below the
+   cradles. The leather trim on the door fits in the 35.4 mm drop below the
    arm attachment.
 
 ---
@@ -85,7 +85,7 @@ All parameters are at the top of `door_hanger.scad` — change to suit your door
   vertical outer face, creating one smooth curved corner via the 1.5 mm
   offset rounding — no double-curve melding.
 - **Uniform arm thickness**: The outer and inner faces of the vertical arm
-  are parallel, ensuring consistent 6.75 mm wall thickness throughout the
+  are parallel, ensuring consistent 9.25 mm wall thickness throughout the
   J-hook.
 - **Backplate**: The rear face (wall side) is flat with sharp corners for a
   flush wall fit.  The front face has a 1.5 mm chamfer all around for a clean
@@ -93,9 +93,9 @@ All parameters are at the top of `door_hanger.scad` — change to suit your door
 - **Screw placement**: The top screws are 6.86 mm above the arm attachment
   line; the bottom screws are 6.86 mm below the arm attachment bottom.
   Margins above the top countersink and below the bottom countersink are
-  equal (~5.6 mm).
-- **Cradle**: The Ø4.75 mm through-hole runs across the full 28 mm arm width.
-  Only 2 mm of material sits below the hole bottom.
+  equal (~5.4 mm).
+- **Cradle**: The Ø5.25 mm through-hole runs across the full 28 mm arm width.
+  Only ~2 mm of material sits below the hole bottom.
 - **Parametric**: Adjust `drop`, `arm_l`, `arm_t`, `hook_gap`, and more at
   the top of the SCAD file for different door dimensions.
 
