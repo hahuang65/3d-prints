@@ -187,9 +187,12 @@ render_view() {
     if [[ -n "$TINT_HI" ]]; then
         # Tint palette: key the uniform background, remap the part's tones onto
         # the palette range, and drop it on the palette background.
+        # Low fuzz: the background is a flat solid colour (keys cleanly even at a
+        # few %), while curved highlights can sit within ~12% of it — too high a
+        # fuzz keys those out and they composite to the base as dark speckles.
         local key; key=$(magick "$RAW" -format '%[pixel:p{2,2}]' info:)
         magick -size "${rw}x${rh}" xc:"$TINT_BG" \
-            \( "$RAW" -fuzz 12% -transparent "$key" \
+            \( "$RAW" -fuzz 6% -transparent "$key" \
                       -channel RGB +level-colors "${TINT_LO}","${TINT_HI}" +channel \) \
             -composite "$full"
     else
