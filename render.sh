@@ -154,7 +154,10 @@ else
     TMP_MESH="$(mktemp --suffix=.stl)"
     MESH="$TMP_MESH"
     DEFINE_ARGS=()
-    [[ -n "$DEFINE" ]] && DEFINE_ARGS=(-D "$DEFINE")
+    if [[ -n "$DEFINE" ]]; then           # DEFINE may hold several ;-separated overrides
+        IFS=';' read -ra _defs <<< "$DEFINE"
+        for _d in "${_defs[@]}"; do DEFINE_ARGS+=(-D "$_d"); done
+    fi
     openscad -o "$MESH" "${DEFINE_ARGS[@]}" "$MODEL" >/dev/null 2>&1 \
         || die "openscad failed to compile $MODEL"
 fi
