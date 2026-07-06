@@ -56,7 +56,7 @@ drop    = 28;         // holder TOP, below the clamp bottom (mm)
 reach   = 78;         // how far back the holders sit (mm)
 web_frac = 0.5;       // center-web height as a fraction of holder height
 web_top  = true;      // true = web on the TOP half (stronger), false = bottom
-arm_r    = 9;         // gooseneck radius (uniform along the whole sweep, mm)
+arm_r    = 11;        // gooseneck radius (uniform along the sweep, mm) -> Ø22
 arm_weld = 2;         // how far the arm root overlaps INTO the back wall (mm)
 arm_stub = 8;         // straight, flat-capped run off the wall before it curves (mm)
 
