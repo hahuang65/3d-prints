@@ -34,6 +34,20 @@ via Dual Lock and grip tape — no adhesive on the leather.*
 
 ---
 
+## Sponge Holder
+
+![Sponge Holder](Sponge%20Holder/render.png)
+
+*Slim SpongeButler-style clip: a rounded pill tapes flat to a wall, and a U-grip
+on its face holds a kitchen sponge sticking straight out to air-dry.*
+
+→ [`Sponge Holder/`](Sponge%20Holder/) ·
+[`sponge_holder.scad`](Sponge%20Holder/sponge_holder.scad) ·
+[`sponge_holder.stl`](Sponge%20Holder/sponge_holder.stl) ·
+[README](Sponge%20Holder/README.md)
+
+---
+
 ## Volvo Headrest Cupholder
 
 ![Volvo Headrest Cupholder](Volvo%20Headrest%20Cupholder/render.png)
