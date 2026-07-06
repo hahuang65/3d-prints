@@ -17,6 +17,7 @@ mode = "assembled";   // "assembled" | "exploded" | "back_only" | "front_only"
 body = true;          // false = clamp only (cheap fit-test print)
 screws = true;        // false = skip all bolt/nut-trap features (fit test)
 show_bottles = false; // ghost water bottles to check spacing/flare clearance
+show_leg = true;      // ghost headrest neck (visualisation only; not printed)
 
 /* --------------------- NECK (the whole support to wrap) ----------------- */
 leg_w     = 58.75;    // neck width left-right (mm)                MEASURED
@@ -187,7 +188,7 @@ module back_half(){
         if (screws) { both() screw_clear_R(); both() screw_head_R(); }
     }
 }
-module ghost_leg(){ color([0.55,0.55,0.6,0.30]) translate([0,0,-8])
+module ghost_leg(){ if(show_leg) color([0.55,0.55,0.6,0.30]) translate([0,0,-8])
     linear_extrude(clamp_h+16) rrect(leg_w,leg_d,corner_r); }
 module ghost_bottles(){
     color([0.45,0.7,0.95,0.28]) for(sx=[-1,1])
