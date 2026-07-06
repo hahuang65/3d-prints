@@ -48,7 +48,7 @@ nut_th    = 3.4;      // M4 nut thickness + clearance (mm)
 nut_y     = 6.0;      // nut position inside the front boss (mm, +Y)
 
 /* ----------------------------- CLAMP ------------------------------------- */
-wall = 6;             // shell wall thickness (mm)
+wall = 8;             // shell wall thickness (mm) — +2 over the flexy v1
 explode = 46;
 
 /* ------------------------------- BODY ------------------------------------ */
@@ -61,9 +61,14 @@ arm_weld = 2;         // how far the arm root overlaps INTO the back wall (mm)
 arm_stub = 8;         // straight, flat-capped run off the wall before it curves (mm)
 
 /* --------------------- BOTTLE / CUP HOLDERS ----------------------------- */
-body_dia  = 72.0;     // bottle BODY diameter where the ring grips   MEASURED
+bore_bot  = 75.0;     // holder bore Ø at the floor (bottom of cup)
+bore_top  = 85.0;     // holder bore Ø at the rim (top) — flares out, captures more
 flare_dia = 80.0;     // bottle TOP/flare diameter (sets spacing)    MEASURED
-cup_wall=3.0; cup_ring_h=50; cup_clear=1.0; base_lip=9; drain_dia=14; floor_t=3.0;
+body_dia  = 72.0;     // nominal bottle body Ø (ghost-bottle viz only) MEASURED
+cup_wall  = 3.0;      // holder wall thickness
+cup_ring_h = 66;      // holder height (was 50; +~33% so more of the cup drops in)
+floor_t   = 3.0;      // floor thickness
+base_open = bore_bot/3;  // central floor opening Ø ≈ ⅓ bore → wide retaining ring
 top_gap = 18;         // clearance between the two flared tops (mm)
 
 $fn = 96;
@@ -71,16 +76,20 @@ $fn = 96;
 /* ============================ DERIVED ================================== */
 ow = leg_w + 2*wall;          od = leg_d + 2*wall;       or_ = corner_r + wall;
 bw = leg_w + 2*grip_clear;    bd = leg_d + 2*grip_clear; br = corner_r + grip_clear;
-cup_or = body_dia/2 + cup_clear + cup_wall;
-cup_ir = body_dia/2 + cup_clear;
-cup_pitch = max(cup_or + 2, (flare_dia + top_gap)/2);
+cup_irb = bore_bot/2;   cup_irt = bore_top/2;         // bore radius: bottom, top
+cup_orb = cup_irb + cup_wall;   cup_ort = cup_irt + cup_wall;   // outer radius
+cup_pitch = max(cup_ort + 2, (flare_dia + top_gap)/2);   // space the widest (top) rims
 function bxc() = ow/2 + boss_len/2;
 
-cup_cy   = -reach - cup_or + 10;          // holder centers (Y)
+cup_cy   = -reach - cup_orb + 10;         // holder centers (Y)
 ring_top = -drop;                         // holder top (Z)
 ring_bz  = -drop - cup_ring_h;            // holder bottom (Z)
 web_h    = cup_ring_h * web_frac;         // center-web height
 web_z    = web_top ? (ring_top - web_h) : ring_bz;   // web bottom Z
+// Outer radius where the web meets the cup wall (so the web stays flush with
+// the taper), and the cavity's top radius extrapolated 1 mm past the rim.
+web_rb   = cup_orb + (cup_ort - cup_orb) * (web_z - ring_bz) / cup_ring_h;
+cav_rt   = cup_irt + (cup_irt - cup_irb) / (cup_ring_h - floor_t);
 
 /* ============================ HELPERS ================================= */
 module rrect(x,y,r){ offset(r=r) square([x-2*r,y-2*r], center=true); }
@@ -129,7 +138,7 @@ module joint_back_R(){
    spherical rounding) and only arm_weld enters the wall -- never the bore. */
 function bez(a,b,c,t) = [ for(k=[0:2]) (1-t)*(1-t)*a[k] + 2*(1-t)*t*b[k] + t*t*c[k] ];
 module arm_gooseneck(){
-    ty     = cup_cy + cup_or - arm_r - 6;   // tip Y, tube fully inside pill
+    ty     = cup_cy + cup_orb - arm_r - 6;  // tip Y, tube fully inside pill
     z0     = clamp_h*0.45;                   // exit height on the back wall
     stub_y = -od/2 - arm_stub;               // where the straight run ends
 
@@ -151,17 +160,23 @@ module arm_gooseneck(){
     }
 }
 
-/* ---- pill double holder: full rings + half-height web, bored ---- */
+/* ---- pill double holder: tapered rings + half-height web, bored ---- */
 module holders(){
     difference(){
         union(){
-            for(sx=[-1,1]) translate([sx*cup_pitch, cup_cy, ring_bz]) cylinder(h=cup_ring_h, r=cup_or);
-            hull() for(sx=[-1,1]) translate([sx*cup_pitch, cup_cy, web_z]) cylinder(h=web_h, r=cup_or);
+            // Outer body: cones that flare from cup_orb (floor) to cup_ort (rim)
+            for(sx=[-1,1]) translate([sx*cup_pitch, cup_cy, ring_bz])
+                cylinder(h=cup_ring_h, r1=cup_orb, r2=cup_ort);
+            // Center web, flush with the cup taper over its height band
+            hull() for(sx=[-1,1]) translate([sx*cup_pitch, cup_cy, web_z])
+                cylinder(h=web_h, r1=web_rb, r2=cup_ort);
         }
         for(sx=[-1,1]) translate([sx*cup_pitch, cup_cy, ring_bz]){
-            translate([0,0,floor_t]) cylinder(h=cup_ring_h+1, r=cup_ir);        // cavity
-            translate([0,0,-1])      cylinder(h=floor_t+1, r=cup_ir-base_lip);  // floor lip
-            translate([0,0,-1])      cylinder(h=cup_ring_h+2, r=drain_dia/2);   // drain
+            // Tapered cavity: bore_bot at the floor -> bore_top at the rim
+            translate([0,0,floor_t])
+                cylinder(h=cup_ring_h - floor_t + 1, r1=cup_irb, r2=cav_rt);
+            // Central floor opening: wide retaining ring + drain
+            translate([0,0,-1]) cylinder(h=floor_t+2, r=base_open/2);
         }
     }
 }
