@@ -34,6 +34,7 @@ floor_t   = 0.5;        // material below cradle centre (Y, mm) — 2 mm past 
 screw_d   = 4.5;        // clearance hole diameter — shaft + slop  (mm)
 head_d    = 8.3;        // countersunk head outer diameter  (mm)
 csink_ang = 82;         // countersink included angle (degrees)
+bot_screw_inset = 5;    // bottom screws sit this far inboard of each arm's inner edge (driver clearance) (mm)
 
 // General
 round_r   = 1.5;        // 2D edge rounding radius       (mm)
@@ -48,10 +49,16 @@ hy = -(drop + floor_t + cradle_r);       // Y at bottom of arm
 // Screws — one above and one below each arm.
 // Top screw at screw_dist above the arm's TOP edge (Y=0).
 // Bottom screw at screw_dist below the arm's BOTTOM edge (Y=-arm_t).
-screw_x    = hook_gap / 2;   // X = aligned with arm centre
 screw_dist = 6.86;           // distance from arm-attachment edge to screw centre (mm)
 top_screw_y = screw_dist;
 bot_screw_y = -(arm_t + screw_dist);
+
+// Top screws align with each arm's centre (open backplate above the arm — a
+// driver reaches them). Bottom screws sit UNDER the arm at that X, where the
+// J-hook blocks the driver — so shift them inboard, clear of the arm's inner
+// edge, onto the open backplate between the arms.
+top_screw_x = hook_gap / 2;                              // aligned with arm centre
+bot_screw_x = hook_gap / 2 - hook_w / 2 - bot_screw_inset;  // inboard of arm's inner edge
 
 // Backplate vertically offset so top and bottom margins are equal.
 // The midpoint of the two countersink edges is independent of margin.
@@ -73,8 +80,8 @@ module rounded_block(size, r) {
 }
 
 module countersunk_hole() {
-    // Through-hole and countersink cone, cut after union so bottom
-    // screws (which pass through the arm body) are clean.
+    // Through-hole and countersink cone, cut after the union so the holes
+    // are clean wherever they land (backplate, or arm body if one overlaps).
     // Every cut must overshoot BOTH faces — a cut ending coplanar with a
     // face leaves a zero-thickness skin (CGAL won't open the hole there).
     eps = 0.6;
@@ -152,12 +159,12 @@ module hanger_wall() {
                     arm();
         }
 
-        // Screw holes cut through everything (backplate + arm body).
-        // Top screw above arm top; bottom screw below arm attachment bottom.
-        for (sx = [-screw_x, screw_x]) {
-            translate([sx, top_screw_y, 0])
+        // Screw holes through the backplate. Top screws align with each arm;
+        // bottom screws are shifted inboard, clear of the arms, for driver access.
+        for (side = [-1, 1]) {
+            translate([side * top_screw_x, top_screw_y, 0])
                 countersunk_hole();
-            translate([sx, bot_screw_y, 0])
+            translate([side * bot_screw_x, bot_screw_y, 0])
                 countersunk_hole();
         }
     }

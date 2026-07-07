@@ -66,7 +66,8 @@ Prints as a single piece — one hanger per door.  Print two for a pair.
 ## Mounting
 
 1. **Position the hanger** against the wall at your preferred height. Use a level!
-2. **Mark through the 4 mounting holes** — one above and one below each arm.
+2. **Mark through the 4 mounting holes** — one above each arm, and one below
+   and inboard of each arm (shifted toward the middle so a driver clears the hook).
 3. **Drill and plug** for #8 wood screws.
 4. **Screw the hanger** to the wall. The countersunk holes let the screw heads
    sit flush with the face.
@@ -91,8 +92,10 @@ All parameters are at the top of `door_hanger.scad` — change to suit your door
   flush wall fit.  The front face has a 1.5 mm chamfer all around for a clean
   finish.
 - **Screw placement**: The top screws are 6.86 mm above the arm attachment
-  line; the bottom screws are 6.86 mm below the arm attachment bottom.
-  Margins above the top countersink and below the bottom countersink are
+  line, aligned with each arm's centre; the bottom screws are 6.86 mm below
+  the arm attachment bottom and shifted 5 mm inboard of each arm's inner edge,
+  onto the open backplate — so the J-hook no longer blocks a driver reaching
+  them. Margins above the top countersink and below the bottom countersink are
   equal (~5.4 mm).
 - **Cradle**: The Ø5.25 mm through-hole runs across the full 28 mm arm width.
   Only ~2 mm of material sits below the hole bottom.
