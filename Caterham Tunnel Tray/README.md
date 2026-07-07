@@ -19,7 +19,7 @@ on the front wall (to the firewall) and non-abrasive grip tape on the underside
 
 ## Assembly
 
-1. Stick a strip of Dual Lock along the front wall of the tray (23 mm tall face)
+1. Stick a strip of Dual Lock along the front wall of the tray (30 mm tall face; clears a 1" velcro/Dual Lock strip without trimming)
 2. Stick the mating strip to the firewall at the same position
 3. Cut a few pads of Cattongue grip tape and stick them to the underside of the tray floor
 4. Press the tray onto the tunnel and slide forward — the Dual Lock mates and the grip tape bites the leather

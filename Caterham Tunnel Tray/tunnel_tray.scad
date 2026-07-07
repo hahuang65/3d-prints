@@ -23,7 +23,7 @@ tray_w     = 152;    // tray width left-right            (6")
 tray_l     = 178;    // tray length firewall→shifter     (7")
 wall       = 3;      // wall thickness
 floor_t    = 3;      // floor thickness
-side_h     = 20;     // side wall height above floor
+side_h     = 27;     // side wall height above floor (clears 1" velcro strip)
 corner_r   = 6;      // outer corner radius (mm)
 
 // Wiring tube notch (at the firewall edge, right side of centre)
