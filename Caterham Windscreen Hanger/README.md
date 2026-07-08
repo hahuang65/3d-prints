@@ -30,11 +30,11 @@ for why it hangs this way.
 
 | Dimension | Value |
 |-----------|-------|
-| Overall | 58 × 49 × 96 mm (W × D × H) |
+| Overall | 58 × 61 × 96 mm (W × D × H) |
 | Wall plate | 58 × 96 mm, 7 mm thick, 8 mm corner radius |
 | Peg | Ø16 mm, ~24 mm past the web |
 | Collar (lip) | Ø24 mm × 5 mm at the peg's outer end |
-| Peg reach | axis ~37 mm out from the wall face |
+| Peg standoff | collar's near rim stands 30 mm clear of the plate face (peg axis ~49 mm off the wall) |
 | Fixing holes | 4 × countersunk — Ø4.5 mm shank, Ø9 mm head |
 
 Every dimension is a top-level parameter in the SCAD. **Measure your own

@@ -24,7 +24,9 @@ collar_d   = 24;     // collar diameter — the lip the cutout edge climbs over
 collar_len = 5;      // collar length at the peg's outer end
 
 /* =========================== ARM / WEB ==================================== */
-arm_reach  = 30;     // web length, plate face -> peg axis (peg ~38 mm out)
+arm_reach  = 42;     // web length, plate face -> peg axis; sized so the collar's
+                     // near rim stands 30 mm clear of the plate face
+                     // (arm_reach = 30 clearance + collar_d/2)
 web_t      = 10;     // web thickness (sideways, X)
 web_h      = 52;     // web height at the plate, tapering to the peg
 
