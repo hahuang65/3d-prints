@@ -29,14 +29,14 @@ Prints as a single piece — one hanger per door.  Print two for a pair.
 | Cradle diameter | 5.25 mm |
 | Cradle length (through arm) | 28 mm |
 | Cradle centre from wall | 30 mm |
-| Cradle centre below arm top | 35.4 mm |
+| Cradle centre below arm top | 40.4 mm |
 | Material below cradle hole | ~2 mm |
 | Door–wall gap | ~28 mm |
 | Top screw (Y from centre) | +6.86 mm (6.86 mm above arm attachment) |
 | Bottom screw (Y from centre) | −16.11 mm (6.86 mm below arm attachment bottom) |
 | Backplate front bevel | 1.5 mm, 45° chamfer |
 | Arm edge rounding | 1.5 mm radius (via profile offset) |
-| Print volume | 174 × 56 × 35 mm |
+| Print volume | 174 × 61 × 35 mm |
 
 ---
 
@@ -73,7 +73,7 @@ Prints as a single piece — one hanger per door.  Print two for a pair.
    sit flush with the face.
 5. **Repeat** for the second door.
 6. **Hang the door** by lowering its bottom frame member into both J-hook
-   cradles. The leather trim on the door fits in the 35.4 mm drop below the
+   cradles. The leather trim on the door fits in the 40.4 mm drop below the
    arm attachment.
 
 ---

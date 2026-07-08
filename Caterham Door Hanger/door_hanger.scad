@@ -26,7 +26,7 @@ bp_t      = 5;          // thickness (Z)                (mm)
 hook_w    = 28;         // width of each arm (X)        (mm)
 hook_gap  = 142.8;      // centre–centre arm spacing (X) (mm)
 arm_l     = 30;         // cradle centre from backplate face (Z, mm)
-drop      = 35.4;       // cradle centre below arm attachment (Y, mm) — 10 mm lower
+drop      = 40.4;       // cradle centre below arm attachment (Y, mm) — hook drops 5 mm further
 arm_t     = cradle_d + 4;  // arm thickness — 2 mm per side of cradle  (mm)
 floor_t   = 0.5;        // material below cradle centre (Y, mm) — 2 mm past hole bottom
 
