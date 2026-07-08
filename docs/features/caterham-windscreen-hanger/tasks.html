@@ -1,0 +1,247 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caterham Windscreen Hanger — Tasks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-display: 'Bricolage Grotesque', Georgia, serif;
+    --font-body: 'Archivo', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+    --bg: #1e1e2e; --mantle: #181825; --crust: #11111b;
+    --surface: #24243a; --surface0: #313244; --surface1: #45475a; --surface2: #585b70;
+    --text: #cdd6f4; --subtext: #a6adc8; --overlay: #7f849c;
+    --border: rgba(205,214,244,0.10); --border-bright: rgba(205,214,244,0.22);
+    --mauve: #cba6f7; --blue: #89b4fa; --green: #a6e3a1; --peach: #fab387;
+    --red: #f38ba8; --yellow: #f9e2af; --steel: #9399b2;
+    --accent: var(--mauve); --accent-dim: rgba(203,166,247,0.14);
+  }
+  @media (prefers-color-scheme: light) {
+    :root {
+      --bg: #eff1f5; --mantle: #e6e9ef; --crust: #dce0e8;
+      --surface: #ffffff; --surface0: #ccd0da; --surface1: #bcc0cc; --surface2: #acb0be;
+      --text: #4c4f69; --subtext: #6c6f85; --overlay: #8c8fa1;
+      --border: rgba(76,79,105,0.12); --border-bright: rgba(76,79,105,0.24);
+      --mauve: #8839ef; --blue: #1e66f5; --green: #40a02b; --peach: #fe640b;
+      --red: #d20f39; --yellow: #df8e1d; --steel: #6c6f85;
+      --accent-dim: rgba(136,57,239,0.10);
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; font-family: var(--font-body); color: var(--text); background-color: var(--bg);
+    background-image: radial-gradient(ellipse at 82% -6%, var(--accent-dim) 0%, transparent 52%),
+      radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-size: auto, 26px 26px; line-height: 1.6; overflow-wrap: break-word; -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1040px; margin: 0 auto; padding: 48px 28px 80px; }
+  a { color: var(--mauve); text-underline-offset: 3px; }
+
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 700; letter-spacing: 3.5px; text-transform: uppercase; color: var(--mauve); display: flex; align-items: center; gap: 12px; }
+  .eyebrow::before { content:''; width: 26px; height: 2px; background: var(--mauve); }
+  h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.3rem, 6vw, 3.8rem); line-height: 1.02; letter-spacing: -0.02em; margin: 18px 0 10px; text-wrap: balance; }
+  h1 .thin { color: var(--overlay); font-weight: 600; }
+  .lede { font-size: clamp(1.02rem, 2vw, 1.25rem); color: var(--subtext); max-width: 64ch; margin: 0 0 26px; }
+  .metabar { display: flex; flex-wrap: wrap; gap: 10px; }
+  .chip { font-family: var(--font-mono); font-size: 11.5px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--subtext); display: inline-flex; align-items: center; gap: 7px; }
+  .chip b { color: var(--text); font-weight: 700; }
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+  .chip .dot.p { background: var(--peach); } .chip .dot.m { background: var(--mauve); }
+
+  section { margin-top: 56px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 20px; }
+  .sec-num { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--mauve); border: 1px solid var(--border-bright); border-radius: 6px; padding: 3px 8px; flex: none; }
+  h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; letter-spacing: -0.01em; }
+  .sec-head p { margin: 4px 0 0; color: var(--subtext); font-size: 0.95rem; }
+
+  .figframe { background: linear-gradient(0deg, var(--mantle), var(--mantle)), radial-gradient(circle, var(--border) 1px, transparent 1px); background-size: auto, 22px 22px; border: 1px solid var(--border-bright); border-radius: 16px; padding: 8px; overflow-x: auto; }
+  .figframe svg { display: block; width: 100%; height: auto; min-width: 520px; }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; margin-top: 14px; font-family: var(--font-mono); font-size: 11.5px; color: var(--subtext); }
+  .legend span { display: inline-flex; align-items: center; gap: 7px; }
+  .legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+  .slice { display: grid; grid-template-columns: 54px 1fr; gap: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 14px; }
+  .slice__rail { background: color-mix(in srgb, var(--surface) 60%, var(--mauve) 12%); display: flex; align-items: flex-start; justify-content: center; padding-top: 20px; font-family: var(--font-mono); font-weight: 700; font-size: 15px; color: var(--mauve); border-right: 1px solid var(--border); }
+  .slice.hitl .slice__rail { background: color-mix(in srgb, var(--surface) 60%, var(--peach) 14%); color: var(--peach); }
+  .slice__body { padding: 18px 22px; }
+  .slice h3 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.18rem; letter-spacing: -0.01em; }
+  .slice p { margin: 10px 0 0; color: var(--subtext); font-size: 0.93rem; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+  .badge { font-family: var(--font-mono); font-size: 10.5px; font-weight: 700; letter-spacing: 0.5px; padding: 3px 9px; border-radius: 6px; text-transform: uppercase; }
+  .badge.afk { background: color-mix(in srgb, var(--green) 18%, transparent); color: var(--green); }
+  .badge.hitl { background: color-mix(in srgb, var(--peach) 20%, transparent); color: var(--peach); }
+  .badge.dep { background: var(--surface0); color: var(--subtext); text-transform: none; letter-spacing: 0; font-weight: 500; }
+  .stories { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 12px; }
+  .stories b { font-family: var(--font-mono); font-size: 10px; color: var(--overlay); align-self: center; margin-right: 2px; letter-spacing: 0.5px; }
+  .stories span { font-family: var(--font-mono); font-size: 10.5px; font-weight: 600; color: var(--blue); background: color-mix(in srgb, var(--blue) 14%, transparent); border-radius: 5px; padding: 2px 7px; }
+  .ts { font-family: var(--font-mono); font-size: 11px; color: var(--overlay); margin-top: 12px; padding-top: 10px; border-top: 1px dashed var(--border); }
+  .ts b { color: var(--subtext); font-weight: 600; }
+
+  footer { margin-top: 64px; padding-top: 22px; border-top: 1px solid var(--border); display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--overlay); }
+  footer a { color: var(--subtext); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .reveal { opacity: 0; animation: fadeUp .55s cubic-bezier(.2,.7,.2,1) forwards; }
+  @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1 !important; animation: none !important; } html { scroll-behavior: auto; } }
+  @media (max-width: 700px) { .wrap { padding: 32px 18px 60px; } .slice { grid-template-columns: 42px 1fr; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow reveal">Build Pipeline · Phase 3 — Tasks</div>
+    <h1 class="reveal" style="animation-delay:.05s">Caterham Windscreen Hanger <span class="thin">— Tasks</span></h1>
+    <p class="lede reveal" style="animation-delay:.1s">Seven vertical slices. Each cuts through the whole product pipeline — parametric source → STL → Mocha render → catalog — so every slice ends in something you can look at, or hold.</p>
+    <div class="metabar reveal" style="animation-delay:.15s">
+      <span class="chip"><span class="dot m"></span><b>7</b>&nbsp;slices</span>
+      <span class="chip"><span class="dot"></span><b>6</b>&nbsp;AFK</span>
+      <span class="chip"><span class="dot p"></span><b>1</b>&nbsp;HITL</span>
+      <span class="chip"><span class="dot m"></span>No automated tests — <b>render + print-fit</b></span>
+    </div>
+  </header>
+
+  <!-- DEPENDENCY GRAPH -->
+  <section style="margin-top:36px">
+    <div class="sec-head reveal"><span class="sec-num">◇</span><div><h2>Dependency graph</h2><p>Blockers first. Two branches run in parallel after the tracer, and rejoin at the finalise.</p></div></div>
+    <div class="figframe reveal">
+      <svg viewBox="0 0 760 560" role="img" aria-label="Dependency graph of the seven slices">
+        <defs>
+          <marker id="a" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="var(--overlay)"/></marker>
+        </defs>
+        <!-- edges -->
+        <g fill="none" stroke="var(--overlay)" stroke-width="1.6" marker-end="url(#a)">
+          <path d="M380,86 C330,110 300,116 262,140"/>
+          <path d="M380,86 C430,110 470,116 508,140"/>
+          <path d="M250,194 L250,248"/>
+          <path d="M250,302 C250,330 330,332 372,356"/>
+          <path d="M510,194 C510,270 430,300 392,356"/>
+          <path d="M380,410 C330,436 300,442 262,464"/>
+          <path d="M380,410 C430,436 470,442 508,464"/>
+        </g>
+        <!-- nodes -->
+        <g font-family="var(--font-mono)">
+          <!-- S1 -->
+          <g><rect x="295" y="34" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--mauve)" stroke-width="1.8"/><text x="380" y="56" text-anchor="middle" fill="var(--mauve)" font-size="13" font-weight="700">S1 · Tracer</text><text x="380" y="73" text-anchor="middle" fill="var(--subtext)" font-size="10.5">full pipeline</text></g>
+          <!-- S2 -->
+          <g><rect x="165" y="142" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--border-bright)" stroke-width="1.6"/><text x="250" y="164" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">S2 · Peg</text><text x="250" y="181" text-anchor="middle" fill="var(--subtext)" font-size="10.5">engagement</text></g>
+          <!-- S4 -->
+          <g><rect x="425" y="142" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--border-bright)" stroke-width="1.6"/><text x="510" y="164" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">S4 · Wall plate</text><text x="510" y="181" text-anchor="middle" fill="var(--subtext)" font-size="10.5">fixing holes</text></g>
+          <!-- S3 -->
+          <g><rect x="165" y="250" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--border-bright)" stroke-width="1.6"/><text x="250" y="272" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">S3 · Retention</text><text x="250" y="289" text-anchor="middle" fill="var(--subtext)" font-size="10.5">tilt + collar</text></g>
+          <!-- S5 -->
+          <g><rect x="295" y="358" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--mauve)" stroke-width="1.8"/><text x="380" y="380" text-anchor="middle" fill="var(--mauve)" font-size="13" font-weight="700">S5 · Finalise</text><text x="380" y="397" text-anchor="middle" fill="var(--subtext)" font-size="10.5">gusset · manifold · STL</text></g>
+          <!-- S6 -->
+          <g><rect x="165" y="466" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--border-bright)" stroke-width="1.6"/><text x="250" y="488" text-anchor="middle" fill="var(--text)" font-size="13" font-weight="700">S6 · Docs</text><text x="250" y="505" text-anchor="middle" fill="var(--subtext)" font-size="10.5">README + index</text></g>
+          <!-- S7 -->
+          <g><rect x="425" y="466" width="170" height="52" rx="11" fill="var(--surface)" stroke="var(--peach)" stroke-width="1.8"/><text x="510" y="488" text-anchor="middle" fill="var(--peach)" font-size="13" font-weight="700">S7 · Print-fit</text><text x="510" y="505" text-anchor="middle" fill="var(--subtext)" font-size="10.5">HITL · on the car</text></g>
+        </g>
+      </svg>
+    </div>
+    <div class="legend">
+      <span><i style="background:var(--mauve)"></i>Pipeline milestone (tracer / finalise)</span>
+      <span><i style="background:var(--surface2)"></i>AFK feature slice</span>
+      <span><i style="background:var(--peach)"></i>HITL — human in the loop</span>
+    </div>
+  </section>
+
+  <!-- SLICES -->
+  <section>
+    <div class="sec-head reveal"><span class="sec-num">01</span><div><h2>The slices</h2><p>Numbered in dependency order. Each ends demoable — a fresh render, or a printed part.</p></div></div>
+
+    <div class="slice reveal">
+      <div class="slice__rail">S1</div>
+      <div class="slice__body">
+        <h3>Tracer — a rough bracket through the whole pipeline</h3>
+        <div class="tags"><span class="badge afk">AFK</span><span class="badge dep">starts immediately</span></div>
+        <p>Stand up the product folder and wire the whole chain: a parametric source that makes the simplest recognisable bracket — wall plate → arm → 90° turn → plain peg stub — plus a Mocha <code style="font-family:var(--font-mono);font-size:.85em">render.conf</code>, a render, a stub README, and a root-index entry. Symmetric (non-handed) from the start.</p>
+        <div class="stories"><b>STORIES</b><span>6</span><span>13</span><span>14</span><span>1</span><span>2</span></div>
+        <div class="ts"><b>Verify:</b> CGAL render succeeds (manifold), render.png generated, bbox within a ~256 mm bed.</div>
+      </div>
+    </div>
+
+    <div class="slice reveal">
+      <div class="slice__rail">S2</div>
+      <div class="slice__body">
+        <h3>The engagement peg</h3>
+        <div class="tags"><span class="badge afk">AFK</span><span class="badge dep">blocked by S1</span></div>
+        <p>Turn the stub into the real sideways cylindrical peg — sized to drop through the ~76 mm cutout, reaching ~38 mm out, pointing inward. Expose cutout size, peg diameter, clearance, and arm reach as top-level parameters.</p>
+        <div class="stories"><b>STORIES</b><span>2</span><span>4</span><span>11</span></div>
+        <div class="ts"><b>Verify:</b> render (with a ghost cutout) shows clean drop-through; params re-render live; still manifold.</div>
+      </div>
+    </div>
+
+    <div class="slice reveal">
+      <div class="slice__rail">S3</div>
+      <div class="slice__body">
+        <h3>Retention — up-tilt and end collar</h3>
+        <div class="tags"><span class="badge afk">AFK</span><span class="badge dep">blocked by S2</span></div>
+        <p>Add the ~5–10° up-tilt and the stepped <b>collar</b> — the outer ~5 mm at a larger diameter, so the resting cutout edge must climb it to slide off. Parametrise tilt, collar diameter, and collar length. Overshoot the collar step to dodge the coplanar-subtraction gotcha.</p>
+        <div class="stories"><b>STORIES</b><span>5</span></div>
+        <div class="ts"><b>Verify:</b> render shows the tilt and stepped collar; collar clears the cutout; manifold (no skin at the step).</div>
+      </div>
+    </div>
+
+    <div class="slice reveal">
+      <div class="slice__rail">S4</div>
+      <div class="slice__body">
+        <h3>Wall-plate fixing pattern</h3>
+        <div class="tags"><span class="badge afk">AFK</span><span class="badge dep">blocked by S1</span><span class="badge dep">∥ S2–S3</span></div>
+        <p>Flesh out the flat plate with a spread, countersunk hole pattern — one hole for a stud, plus outer toggle/butterfly-anchor holes. Parametrise plate size and pattern. Overshoot the countersink and through cuts past both faces (CGAL manifold gotcha).</p>
+        <div class="stories"><b>STORIES</b><span>7</span><span>8</span></div>
+        <div class="ts"><b>Verify:</b> render shows countersunk stud + toggle holes; clean subtraction, no coplanar skin; plate stays flat.</div>
+      </div>
+    </div>
+
+    <div class="slice reveal">
+      <div class="slice__rail">S5</div>
+      <div class="slice__body">
+        <h3>Gusset and print-readiness</h3>
+        <div class="tags"><span class="badge afk">AFK</span><span class="badge dep">blocked by S3, S4</span></div>
+        <p>Bring it all together: a modest gusset braces the 90° corner, and the print orientation is settled so the corner is strong and no supports are needed. Confirm one clean manifold, bed fit, and export the final STL + regenerate the render.</p>
+        <div class="stories"><b>STORIES</b><span>10</span><span>12</span><span>14</span></div>
+        <div class="ts"><b>Verify:</b> whole part manifold; no-support orientation; bbox fits bed; final STL + render.</div>
+      </div>
+    </div>
+
+    <div class="slice reveal">
+      <div class="slice__rail">S6</div>
+      <div class="slice__body">
+        <h3>README and catalog index</h3>
+        <div class="tags"><span class="badge afk">AFK</span><span class="badge dep">blocked by S5</span></div>
+        <p>Write the full README in house style — description, BOM/mount (screws + toggle anchors), PETG, print notes, a dimensions table off the final geometry, license — and finalise the alphabetical root-index entry with the final render.</p>
+        <div class="stories"><b>STORIES</b><span>2</span><span>3</span><span>9</span><span>10</span><span>13</span></div>
+        <div class="ts"><b>Verify:</b> README matches the other products' shape; index shows the hanger; all links resolve.</div>
+      </div>
+    </div>
+
+    <div class="slice hitl reveal">
+      <div class="slice__rail">S7</div>
+      <div class="slice__body">
+        <h3>Print-fit validation</h3>
+        <div class="tags"><span class="badge hitl">HITL</span><span class="badge dep">blocked by S5</span></div>
+        <p>Print one bracket in PETG and offer it to the real <b>stanchion</b>: confirm the cutout drops over the peg, hangs on steel only, the collar resists a nudge, and it clears the glass. Any fit fix becomes a parameter change and re-export, before printing the second.</p>
+        <div class="stories"><b>STORIES</b><span>1</span><span>2</span><span>4</span><span>5</span><span>9</span></div>
+        <div class="ts"><b>Verify:</b> physical print-fit against the actual cutout on the car.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Caterham Windscreen Hanger · Tasks · 6 AFK / 1 HITL</span>
+    <span><a href="./prd.md">PRD</a> · <a href="../../adr/0001-hang-windscreen-inverted-from-stanchion-cutouts.md">ADR-0001</a></span>
+  </footer>
+
+</div>
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach((el, i) => { if (!el.style.animationDelay) el.style.animationDelay = (0.05 * i) + 's'; });
+  }
+</script>
+</body>
+</html>

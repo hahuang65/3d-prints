@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Caterham Windscreen Hanger — PRD</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Archivo:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --font-display: 'Bricolage Grotesque', Georgia, serif;
+    --font-body: 'Archivo', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+
+    /* Catppuccin Mocha (primary identity — matches the catalog renders) */
+    --bg: #1e1e2e;
+    --mantle: #181825;
+    --crust: #11111b;
+    --surface: #24243a;
+    --surface0: #313244;
+    --surface1: #45475a;
+    --surface2: #585b70;
+    --text: #cdd6f4;
+    --subtext: #a6adc8;
+    --overlay: #7f849c;
+    --border: rgba(205,214,244,0.10);
+    --border-bright: rgba(205,214,244,0.22);
+
+    --mauve: #cba6f7;
+    --blue: #89b4fa;
+    --green: #a6e3a1;
+    --peach: #fab387;
+    --red: #f38ba8;
+    --yellow: #f9e2af;
+    --steel: #9399b2;
+    --glass: rgba(137,180,250,0.16);
+    --accent: var(--mauve);
+    --accent-dim: rgba(203,166,247,0.14);
+  }
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      /* Catppuccin Latte */
+      --bg: #eff1f5;
+      --mantle: #e6e9ef;
+      --crust: #dce0e8;
+      --surface: #ffffff;
+      --surface0: #ccd0da;
+      --surface1: #bcc0cc;
+      --surface2: #acb0be;
+      --text: #4c4f69;
+      --subtext: #6c6f85;
+      --overlay: #8c8fa1;
+      --border: rgba(76,79,105,0.12);
+      --border-bright: rgba(76,79,105,0.24);
+
+      --mauve: #8839ef;
+      --blue: #1e66f5;
+      --green: #40a02b;
+      --peach: #fe640b;
+      --red: #d20f39;
+      --yellow: #df8e1d;
+      --steel: #6c6f85;
+      --glass: rgba(30,102,245,0.12);
+      --accent-dim: rgba(136,57,239,0.10);
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: var(--font-body);
+    color: var(--text);
+    background-color: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 78% -6%, var(--accent-dim) 0%, transparent 52%),
+      radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-size: auto, 26px 26px;
+    line-height: 1.6;
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 48px 28px 80px; }
+
+  a { color: var(--mauve); text-decoration-color: var(--border-bright); text-underline-offset: 3px; }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 12px; font-weight: 700; letter-spacing: 3.5px;
+    text-transform: uppercase; color: var(--mauve);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .eyebrow::before { content:''; width: 26px; height: 2px; background: var(--mauve); display:inline-block; }
+  h1 {
+    font-family: var(--font-display);
+    font-weight: 800; font-size: clamp(2.3rem, 6vw, 4rem);
+    line-height: 1.02; letter-spacing: -0.02em;
+    margin: 18px 0 10px; text-wrap: balance;
+  }
+  h1 .thin { color: var(--overlay); font-weight: 600; }
+  .lede { font-size: clamp(1.05rem, 2.1vw, 1.3rem); color: var(--subtext); max-width: 62ch; margin: 0 0 26px; }
+
+  .metabar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 8px; }
+  .chip {
+    font-family: var(--font-mono); font-size: 11.5px; font-weight: 500;
+    padding: 6px 12px; border-radius: 999px;
+    background: var(--surface); border: 1px solid var(--border);
+    color: var(--subtext); display: inline-flex; align-items: center; gap: 7px;
+  }
+  .chip b { color: var(--text); font-weight: 700; }
+  .chip .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mauve); }
+  .chip .dot.g { background: var(--green); }
+  .chip .dot.b { background: var(--blue); }
+  .chip .dot.p { background: var(--peach); }
+
+  section { margin-top: 60px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 22px; }
+  .sec-num {
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700;
+    color: var(--mauve); letter-spacing: 1px;
+    border: 1px solid var(--border-bright); border-radius: 6px;
+    padding: 3px 8px; flex: none;
+  }
+  h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem, 3vw, 2rem); margin: 0; letter-spacing: -0.01em; }
+  .sec-head p { margin: 4px 0 0; color: var(--subtext); font-size: 0.95rem; }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: 14px; padding: 22px 24px; position: relative;
+  }
+  .card--hero {
+    background: linear-gradient(180deg, color-mix(in srgb, var(--surface) 88%, var(--mauve) 12%), var(--surface));
+    border-color: var(--border-bright);
+    box-shadow: 0 18px 48px -24px rgba(0,0,0,0.6);
+  }
+  .label {
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1.8px; color: var(--mauve);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+  }
+  .label::before { content:''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+  .label.g { color: var(--green); } .label.b { color: var(--blue); } .label.p { color: var(--peach); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+  .two > * { min-width: 0; }
+
+  figure { margin: 0; }
+  .figframe {
+    background:
+      linear-gradient(0deg, var(--mantle), var(--mantle)),
+      radial-gradient(circle, var(--border) 1px, transparent 1px);
+    background-size: auto, 22px 22px;
+    border: 1px solid var(--border-bright); border-radius: 16px;
+    padding: 8px; overflow-x: auto;
+  }
+  .figframe svg { display: block; width: 100%; height: auto; min-width: 560px; }
+  figcaption {
+    font-family: var(--font-mono); font-size: 12px; color: var(--subtext);
+    margin-top: 12px; padding-left: 2px; letter-spacing: 0.2px; line-height: 1.55;
+  }
+  figcaption b { color: var(--text); }
+
+  .svg-mono { font-family: var(--font-mono); }
+
+  .stories { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; counter-reset: story; }
+  .story {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 16px 18px 16px 46px; position: relative; font-size: 0.94rem;
+  }
+  .story::before {
+    counter-increment: story; content: counter(story, decimal-leading-zero);
+    position: absolute; left: 16px; top: 15px;
+    font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--mauve);
+  }
+  .story b { color: var(--text); font-weight: 600; }
+  .story span { color: var(--subtext); }
+
+  .decisions { display: grid; gap: 12px; }
+  .dec {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    border-left: 3px solid var(--mauve); padding: 15px 20px;
+  }
+  .dec h3 { margin: 0 0 4px; font-family: var(--font-body); font-size: 0.98rem; font-weight: 600; }
+  .dec p { margin: 0; color: var(--subtext); font-size: 0.92rem; }
+  .dec.b { border-left-color: var(--blue); }
+  .dec.g { border-left-color: var(--green); }
+  .dec.p { border-left-color: var(--peach); }
+
+  code, .mono { font-family: var(--font-mono); font-size: 0.86em; background: var(--accent-dim); color: var(--mauve); padding: 1px 6px; border-radius: 5px; }
+
+  ul.plain { list-style: none; margin: 0; padding: 0; }
+  ul.plain li { padding-left: 18px; position: relative; color: var(--subtext); margin: 7px 0; }
+  ul.plain li::before { content: '›'; position: absolute; left: 0; color: var(--overlay); font-weight: 700; }
+  ul.plain li b { color: var(--text); font-weight: 600; }
+
+  .callout {
+    border: 1px dashed var(--border-bright); border-radius: 12px; padding: 16px 20px;
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    font-size: 0.92rem;
+  }
+  .callout .label { color: var(--peach); }
+
+  footer {
+    margin-top: 72px; padding-top: 22px; border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between;
+    font-family: var(--font-mono); font-size: 12px; color: var(--overlay);
+  }
+  footer a { color: var(--subtext); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  .reveal { opacity: 0; animation: fadeUp .6s cubic-bezier(.2,.7,.2,1) forwards; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1 !important; animation: none !important; }
+    html { scroll-behavior: auto; }
+  }
+
+  @media (max-width: 800px) {
+    .two, .stories { grid-template-columns: 1fr; }
+    .wrap { padding: 32px 18px 60px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="eyebrow reveal">Product Requirements · 3D Print Catalog</div>
+    <h1 class="reveal" style="animation-delay:.05s">Caterham Windscreen Hanger <span class="thin">— PRD</span></h1>
+    <p class="lede reveal" style="animation-delay:.1s">A pair of printed brackets that store a removed Caterham Seven windscreen on the garage wall — hung by its steel stanchions, so nothing ever bears on the glass.</p>
+    <div class="metabar reveal" style="animation-delay:.15s">
+      <span class="chip"><span class="dot"></span>Status <b>Design locked</b></span>
+      <span class="chip"><span class="dot b"></span><b>ADR-0001</b></span>
+      <span class="chip"><span class="dot g"></span>≈ <b>5&nbsp;kg</b> · ~2.5&nbsp;kg/arm</span>
+      <span class="chip"><span class="dot p"></span>Material <b>PETG</b></span>
+      <span class="chip"><span class="dot"></span>1 part · <b>printed ×2</b></span>
+    </div>
+  </header>
+
+  <!-- ============ HERO: PLAN VIEW ============ -->
+  <section style="margin-top:40px">
+    <div class="card card--hero reveal" style="animation-delay:.2s">
+      <div class="label">Mechanism · plan view (looking down)</div>
+      <figure>
+        <div class="figframe">
+          <svg viewBox="0 0 820 340" role="img" aria-label="Top-down plan of the two 90-degree brackets holding the windscreen stanchions">
+            <defs>
+              <marker id="ar" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="var(--overlay)"/></marker>
+              <marker id="ars" markerWidth="9" markerHeight="9" refX="1" refY="4.5" orient="auto"><path d="M8,0 L0,4.5 L8,9 Z" fill="var(--overlay)"/></marker>
+              <pattern id="hatch" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="9" stroke="var(--surface2)" stroke-width="1.4"/></pattern>
+            </defs>
+
+            <!-- wall -->
+            <rect x="40" y="26" width="740" height="20" fill="url(#hatch)" opacity="0.7"/>
+            <line x1="40" y1="46" x2="780" y2="46" stroke="var(--steel)" stroke-width="2.5"/>
+            <text class="svg-mono" x="44" y="20" fill="var(--subtext)" font-size="12">WALL</text>
+
+            <!-- glass, flat to wall (edge-on) -->
+            <rect x="150" y="50" width="520" height="14" rx="3" fill="var(--glass)" stroke="var(--blue)" stroke-width="1.8"/>
+            <text class="svg-mono" x="410" y="61" text-anchor="middle" fill="var(--subtext)" font-size="11.5">windscreen — glass flat to wall</text>
+
+            <!-- stanchion fins jutting straight out -->
+            <rect x="246" y="64" width="13" height="126" fill="var(--surface0)" stroke="var(--steel)" stroke-width="2"/>
+            <rect x="561" y="64" width="13" height="126" fill="var(--surface0)" stroke="var(--steel)" stroke-width="2"/>
+            <text class="svg-mono" x="264" y="182" fill="var(--overlay)" font-size="11">stanchion fin</text>
+
+            <!-- LEFT bracket: plate on wall, arm out, 90 deg turn, wedge inward -->
+            <rect x="188" y="30" width="52" height="16" rx="4" fill="var(--surface1)" stroke="var(--border-bright)" stroke-width="1.5"/>
+            <g stroke="var(--peach)" stroke-width="1.8"><line x1="200" y1="34" x2="208" y2="42"/><line x1="208" y1="34" x2="200" y2="42"/><line x1="222" y1="34" x2="230" y2="42"/><line x1="230" y1="34" x2="222" y2="42"/></g>
+            <rect x="205" y="46" width="14" height="94" fill="var(--surface)" stroke="var(--mauve)" stroke-width="1.6"/>
+            <polygon points="219,116 300,130 300,138 219,150" fill="var(--mauve)" stroke="color-mix(in srgb,var(--mauve) 60%, black)" stroke-width="1.5"/>
+            <rect x="205" y="127" width="14" height="14" fill="none" stroke="var(--yellow)" stroke-width="1.4"/>
+            <text class="svg-mono" x="150" y="112" fill="var(--yellow)" font-size="11">90°</text>
+            <text class="svg-mono" x="150" y="126" fill="var(--overlay)" font-size="11">turn</text>
+
+            <!-- RIGHT bracket mirror -->
+            <rect x="580" y="30" width="52" height="16" rx="4" fill="var(--surface1)" stroke="var(--border-bright)" stroke-width="1.5"/>
+            <g stroke="var(--peach)" stroke-width="1.8"><line x1="590" y1="34" x2="598" y2="42"/><line x1="598" y1="34" x2="590" y2="42"/><line x1="612" y1="34" x2="620" y2="42"/><line x1="620" y1="34" x2="612" y2="42"/></g>
+            <rect x="601" y="46" width="14" height="94" fill="var(--surface)" stroke="var(--mauve)" stroke-width="1.6"/>
+            <polygon points="601,116 520,130 520,138 601,150" fill="var(--mauve)" stroke="color-mix(in srgb,var(--mauve) 60%, black)" stroke-width="1.5"/>
+            <rect x="601" y="127" width="14" height="14" fill="none" stroke="var(--yellow)" stroke-width="1.4"/>
+
+            <!-- inward wedge note -->
+            <text class="svg-mono" x="410" y="130" text-anchor="middle" fill="var(--mauve)" font-size="12">wedges point inward</text>
+            <text class="svg-mono" x="410" y="146" text-anchor="middle" fill="var(--overlay)" font-size="11">→ gently trap the screen</text>
+
+            <!-- projection dim -->
+            <line x1="168" y1="64" x2="168" y2="190" stroke="var(--overlay)" stroke-width="1" marker-start="url(#ars)" marker-end="url(#ar)"/>
+            <text class="svg-mono" x="120" y="130" fill="var(--subtext)" font-size="11.5" transform="rotate(-90 120 130)" text-anchor="middle">≈ 38 mm out</text>
+
+            <!-- spacing dim -->
+            <line x1="252" y1="214" x2="567" y2="214" stroke="var(--overlay)" stroke-width="1" marker-start="url(#ars)" marker-end="url(#ar)"/>
+            <text class="svg-mono" x="410" y="230" text-anchor="middle" fill="var(--subtext)" font-size="11.5">flexible spacing</text>
+
+            <!-- width dim -->
+            <line x1="150" y1="256" x2="670" y2="256" stroke="var(--overlay)" stroke-width="1" marker-start="url(#ars)" marker-end="url(#ar)"/>
+            <text class="svg-mono" x="410" y="272" text-anchor="middle" fill="var(--subtext)" font-size="11.5">≈ 890 mm</text>
+
+            <text class="svg-mono" x="44" y="300" fill="var(--overlay)" font-size="11">PLAN VIEW · brackets sit outboard of each fin and reach in</text>
+          </svg>
+        </div>
+        <figcaption><b>The whole idea, from above:</b> the ~5&nbsp;kg screen lies glass-flat on the wall and each steel stanchion juts ~38&nbsp;mm straight out. Each bracket mounts outboard, comes off the wall, then <b>turns 90°</b> to send a wedge <i>inward</i> through the stanchion's sideways-facing triangular cutout. All weight runs through steel — never the glass.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM / SOLUTION ============ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-num">00</span>
+      <div><h2>The problem &amp; the shape of the fix</h2></div>
+    </div>
+    <div class="two">
+      <div class="card reveal">
+        <div class="label p">Problem</div>
+        <p style="margin-top:0">Pull the windscreen for a track day and you're holding a ~5&nbsp;kg slab of curved laminated glass in an alloy frame, stanchions still attached. On the floor it's underfoot and easy to scuff; leaning it loads the glass and frame; commercial racks barely exist and a timber one is bulky and still bears on the wrong parts.</p>
+      </div>
+      <div class="card reveal" style="animation-delay:.08s">
+        <div class="label g">Solution</div>
+        <p style="margin-top:0">Two identical printed brackets carry the screen by its <b>stanchions</b> — the steel parts built to take its weight. It hangs <b>inverted and flat to the wall</b>. The cutouts face perpendicular to the wall, so each stanchion juts straight out and the bracket <b>turns 90°</b> — out, then a sideways wedge through the cutout, which nests on and self-centres. Each braced arm carries ~2.5&nbsp;kg as a short cantilever; the wall reacts the lean. One non-handed part, printed twice, mounted at any spacing.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ENGAGEMENT DETAIL (two panels) ============ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-num">01</span>
+      <div>
+        <h2>Wedge engagement — how it grabs &amp; holds</h2>
+        <p>Two things the wedge does: self-centre the cutout, and refuse to let go.</p>
+      </div>
+    </div>
+    <figure class="reveal">
+      <div class="figframe">
+        <svg viewBox="0 0 720 340" role="img" aria-label="Left: cutout nesting on the wedge. Right: the wedge tilt and ridge that prevent lift-off.">
+          <defs>
+            <marker id="ld" markerWidth="10" markerHeight="10" refX="5" refY="8" orient="auto"><path d="M0,0 L10,0 L5,9 Z" fill="var(--green)"/></marker>
+            <marker id="sc" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 Z" fill="var(--mauve)"/></marker>
+            <pattern id="hatch2" width="9" height="9" patternTransform="rotate(45)" patternUnits="userSpaceOnUse"><line x1="0" y1="0" x2="0" y2="9" stroke="var(--surface2)" stroke-width="1.4"/></pattern>
+          </defs>
+
+          <!-- divider -->
+          <line x1="360" y1="30" x2="360" y2="310" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4 5"/>
+
+          <!-- ===== PANEL A: NESTING (face-on) ===== -->
+          <text class="svg-mono" x="30" y="40" fill="var(--mauve)" font-size="12" font-weight="700">A · NESTS + SELF-CENTRES</text>
+          <!-- steel cutout outline, apex down -->
+          <polygon points="106,96 246,96 176,214" fill="none" stroke="var(--steel)" stroke-width="3"/>
+          <!-- nested wedge (end-on cross-section) -->
+          <polygon points="128,108 224,108 176,194" fill="var(--mauve)" stroke="color-mix(in srgb,var(--mauve) 60%, black)" stroke-width="1.5"/>
+          <!-- self-centering arrows down the slopes -->
+          <line x1="120" y1="104" x2="140" y2="128" stroke="var(--mauve)" stroke-width="1.6" marker-end="url(#sc)"/>
+          <line x1="232" y1="104" x2="212" y2="128" stroke="var(--mauve)" stroke-width="1.6" marker-end="url(#sc)"/>
+          <!-- load -->
+          <line x1="176" y1="64" x2="176" y2="92" stroke="var(--green)" stroke-width="2.4" marker-end="url(#ld)"/>
+          <text class="svg-mono" x="188" y="80" fill="var(--green)" font-size="11.5">load ↓</text>
+          <text class="svg-mono" x="30" y="250" fill="var(--subtext)" font-size="11.5">steel cutout drops onto the wedge;</text>
+          <text class="svg-mono" x="30" y="267" fill="var(--subtext)" font-size="11.5">matching slopes centre it — no slide.</text>
+
+          <!-- ===== PANEL B: RETENTION (side profile) ===== -->
+          <text class="svg-mono" x="384" y="40" fill="var(--mauve)" font-size="12" font-weight="700">B · TILT + RIDGE → NO LIFT-OFF</text>
+          <!-- wall -->
+          <rect x="392" y="70" width="16" height="230" fill="url(#hatch2)" opacity="0.7"/>
+          <line x1="408" y1="70" x2="408" y2="300" stroke="var(--steel)" stroke-width="2.2"/>
+          <text class="svg-mono" x="384" y="62" fill="var(--subtext)" font-size="11">WALL</text>
+          <!-- arm out of wall -->
+          <rect x="408" y="196" width="26" height="30" fill="var(--surface)" stroke="var(--mauve)" stroke-width="1.5"/>
+          <!-- wedge, tilted up toward the tip -->
+          <polygon points="432,210 610,186 610,204 432,232" fill="var(--mauve)" stroke="color-mix(in srgb,var(--mauve) 60%, black)" stroke-width="1.5"/>
+          <!-- ridge at outer top -->
+          <polygon points="592,186 610,186 610,171" fill="var(--mauve)" stroke="color-mix(in srgb,var(--mauve) 55%, black)" stroke-width="1.5"/>
+          <text class="svg-mono" x="556" y="162" fill="var(--mauve)" font-size="11.5">retaining ridge</text>
+          <line x1="600" y1="174" x2="596" y2="184" stroke="var(--overlay)" stroke-width="1"/>
+          <!-- stanchion (end-on) resting on wedge -->
+          <rect x="500" y="150" width="18" height="50" fill="var(--surface2)" stroke="var(--steel)" stroke-width="2"/>
+          <circle cx="509" cy="200" r="6" fill="none" stroke="var(--yellow)" stroke-width="2"/>
+          <text class="svg-mono" x="470" y="140" fill="var(--text)" font-size="11">stanchion — cutout edge bears here</text>
+          <!-- load -->
+          <line x1="509" y1="112" x2="509" y2="148" stroke="var(--green)" stroke-width="2.4" marker-end="url(#ld)"/>
+          <text class="svg-mono" x="520" y="130" fill="var(--green)" font-size="11.5">↓ ~2.5 kg</text>
+          <!-- tilt guide -->
+          <line x1="432" y1="210" x2="636" y2="210" stroke="var(--overlay)" stroke-width="1" stroke-dasharray="4 4" opacity="0.6"/>
+          <text class="svg-mono" x="620" y="228" fill="var(--mauve)" font-size="11.5">≈5–10° up-tilt</text>
+          <text class="svg-mono" x="384" y="278" fill="var(--subtext)" font-size="11.5">wedge tilts up so it settles in;</text>
+          <text class="svg-mono" x="384" y="295" fill="var(--subtext)" font-size="11.5">ridge caps the outer edge.</text>
+        </svg>
+      </div>
+      <figcaption><b>Belt &amp; braces:</b> looking at the cutout head-on <b>(A)</b>, the steel triangle drops onto the matching wedge and the slopes self-centre it. In side profile <b>(B)</b>, the wedge tilts up so the screen settles into it and a ridge caps the outer edge — together they stop an upward knock from lifting the glass free.</figcaption>
+    </figure>
+  </section>
+
+  <!-- ============ USER STORIES ============ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-num">02</span>
+      <div>
+        <h2>User stories</h2>
+        <p>Everything the owner should be able to do — one actor: the Caterham owner.</p>
+      </div>
+    </div>
+    <div class="stories reveal">
+      <div class="story"><span>Store my removed windscreen <b>off the garage floor</b>, so it isn't underfoot or at risk of being kicked.</span></div>
+      <div class="story"><span>Have the mount carry the screen by its <b>steel stanchions</b>, so no load rests on the glass or alloy frame.</span></div>
+      <div class="story"><span>Hang the screen <b>flat against the wall and off the floor</b>, so it's safely stored and the wall reacts the tipping load.</span></div>
+      <div class="story"><span>Have each triangular cutout <b>nest onto a wedge</b>, so the screen self-centres and can't slide sideways.</span></div>
+      <div class="story"><span>Keep it <b>retained against an upward knock</b>, so a bump can't lift the glass off the wedges.</span></div>
+      <div class="story"><span>Print <b>one non-handed bracket</b> twice, so there's no left/right part to track or mirror.</span></div>
+      <div class="story"><span>Mount the two brackets at <b>any spacing</b>, so I match wherever my stanchions and studs fall.</span></div>
+      <div class="story"><span>Fix safely to <b>plasterboard with toggles</b>, or bite a stud when present, for a big safety margin.</span></div>
+      <div class="story"><span><b>Drop it on and lift it off quickly</b>, so swapping to the aeroscreen for a track day isn't a chore.</span></div>
+      <div class="story"><span>Have it printed in <b>PETG</b>, so it resists creep under sustained load in a warm garage.</span></div>
+      <div class="story"><span>Get a <b>parametric model</b>, so I can dial in the exact cutout size and plate thickness I measure.</span></div>
+      <div class="story"><span>Print <b>without supports</b> in an orientation that keeps the 90° corner strong in bending.</span></div>
+      <div class="story"><span>Have a <b>render and README</b> consistent with the other products, so it's documented the same way.</span></div>
+      <div class="story"><span>Keep both brackets <b>within a desktop printer bed</b>, so no large-format printer is needed for a big screen.</span></div>
+    </div>
+  </section>
+
+  <!-- ============ IMPLEMENTATION DECISIONS ============ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-num">03</span>
+      <div>
+        <h2>Implementation decisions</h2>
+        <p>Settled during the grill — see <a href="../../adr/0001-hang-windscreen-inverted-from-stanchion-cutouts.md">ADR-0001</a>.</p>
+      </div>
+    </div>
+    <div class="decisions reveal">
+      <div class="dec"><h3>Load path &amp; orientation — per ADR-0001</h3><p>Hang the windscreen inverted and flat to the wall from the two stanchion triangular cutouts. All load through steel; nothing on glass or frame.</p></div>
+      <div class="dec"><h3>One symmetric, non-handed bracket · printed ×2</h3><p>No mirrored variant. The two brackets are independent, so the owner sets any spacing to match their stanchions and studs. Symmetry about the vertical mid-plane is what makes it non-handed.</p></div>
+      <div class="dec b"><h3>Engagement — 90° turn to a nesting wedge</h3><p>The cutout faces perpendicular to the wall, so the bracket turns 90°: an arm out from the wall, then a <b>sideways</b> wedge through the cutout. A downward-pointing isosceles wedge matches the ~76×76&nbsp;mm cutout, undersized by a nesting clearance so the steel seats on the faces and self-centres — load along two faces, not one edge. Wedges point inward.</p></div>
+      <div class="dec b"><h3>Retention — tilt <i>and</i> ridge</h3><p>Wedge tilted up ~5–10° so the screen settles into it, plus a small ridge along the outer top of the arm, so an upward knock can't lift the screen off.</p></div>
+      <div class="dec p"><h3>Wall plate — spread fixing</h3><p>Flat plate with a spread, countersunk hole pattern: one hole to catch a stud where it falls, plus outer holes for toggle/butterfly anchors in bare plasterboard. ~2.5&nbsp;kg/bracket sits well inside anchor ratings.</p></div>
+      <div class="dec g"><h3>Structure — short braced cantilever, PETG</h3><p>The wedge sits ~<b>38&nbsp;mm (1.5″)</b> out from the wall, so each arm carries ~2.5&nbsp;kg as a <i>short</i> cantilever — under 1&nbsp;N·m, a small moment with a big PETG margin. A modest gusset at the 90° corner; print oriented so bending can't peel layers there. No supports.</p></div>
+      <div class="dec"><h3>Parametric interface</h3><p>Top-level parameters: cutout base &amp; height, plate thickness, wedge nesting clearance, wedge tilt, ridge size, arm reach, wall-plate dimensions, and the screw/anchor pattern — so a re-measure is a quick edit.</p></div>
+      <div class="dec"><h3>Deliverables — repo product-folder convention</h3><p>Parametric source, an STL export, a <code>render.conf</code> sidecar (Catppuccin Mocha, ¾ view, bold edges) driving the shared <code>render.sh</code>, a <code>render.png</code>, and a README with BOM / mount / print notes under CC&nbsp;BY-NC&nbsp;4.0. Added to the root index.</p></div>
+      <div class="callout" style="margin-top:4px">
+        <div class="label">Deferred to design time</div>
+        Exact wedge dimensions against the measured cutout · exact plate thickness · exact screw/anchor hole spacing.
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODULE + TESTING ============ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-num">04</span>
+      <div>
+        <h2>Module sketch &amp; verification</h2>
+        <p>One deep module behind a small parametric interface.</p>
+      </div>
+    </div>
+    <div class="two">
+      <div class="card reveal">
+        <div class="label b">Deep module</div>
+        <h3 style="margin:2px 0 8px; font-family:var(--font-body); font-size:1.05rem">Windscreen Hanger bracket</h3>
+        <p style="margin-top:0; color:var(--subtext)">One symmetric bracket: wall plate + a 90° arm to an up-tilted sideways wedge + retaining ridge + spread anchor pattern — all driven by a handful of top-level parameters. Lots of geometry, a narrow interface.</p>
+        <ul class="plain" style="margin-top:12px">
+          <li><b>Wall plate</b> — flat mounting face, countersunk spread holes</li>
+          <li><b>90° arm + wedge</b> — reach out, turn, nesting sideways wedge</li>
+          <li><b>Retaining ridge</b> — outer-top lip against lift-off</li>
+        </ul>
+      </div>
+      <div class="card reveal" style="animation-delay:.08s">
+        <div class="label g">Verification — visual + print-fit</div>
+        <p style="margin-top:0; color:var(--subtext)">No automated tests, consistent with every product in this repo. The parametric interface is the durable seam: a bad fit is a parameter edit, not a geometry rewrite.</p>
+        <ul class="plain" style="margin-top:12px">
+          <li><b>Visual</b> — a clean CGAL render (also proves it's manifold &amp; printable) plus the Mocha ¾ render for eyeball review</li>
+          <li><b>Print-fit</b> — print one, confirm the cutout nests, self-centres &amp; the retention holds before printing the second</li>
+          <li><b>Bounding box</b> — confirmed within a ~256&nbsp;mm bed</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SCOPE / NOTES ============ -->
+  <section>
+    <div class="sec-head reveal">
+      <span class="sec-num">05</span>
+      <div><h2>Out of scope &amp; notes</h2></div>
+    </div>
+    <div class="two">
+      <div class="card reveal">
+        <div class="label p">Out of scope</div>
+        <ul class="plain" style="margin-top:6px">
+          <li>Displaying the screen glass-out / right-way-up — it hangs inverted, glass to wall</li>
+          <li>Storing the aeroscreen, or a screen with stanchions removed</li>
+          <li>A single full-width rack spanning both stanchions</li>
+          <li>Supplying screws, anchors, or protective felt</li>
+          <li>Any change to the shared <code>render.sh</code></li>
+        </ul>
+      </div>
+      <div class="card reveal" style="animation-delay:.08s">
+        <div class="label">Further notes</div>
+        <ul class="plain" style="margin-top:6px">
+          <li><b>Glass faces the wall</b> — protected, not displayed; adhesive felt on the wedge faces is an optional owner add</li>
+          <li><b>Protrusion</b> — the stanchions point straight out, so the screen stands off the wall by their ~38&nbsp;mm projection</li>
+          <li><b>Mirror clearance</b> — a mirror left on may near the wall when inverted; check, or remove first</li>
+          <li><b>Two-hand job</b> — inverting &amp; hanging 5&nbsp;kg of glass is a deliberate careful lift</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Caterham Windscreen Hanger · PRD · design locked</span>
+    <span><a href="../../adr/0001-hang-windscreen-inverted-from-stanchion-cutouts.md">ADR-0001</a> · CC BY-NC 4.0</span>
+  </footer>
+
+</div>
+
+<script>
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      if (!el.style.animationDelay) el.style.animationDelay = (0.04 * i) + 's';
+    });
+  }
+</script>
+</body>
+</html>
