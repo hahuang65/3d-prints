@@ -22,7 +22,7 @@ for why it hangs this way.
 | **Quantity** | Print **2** (flip one for the opposite stanchion) |
 | **Mount** | 4 countersunk wall screws per bracket — land on a stud where one falls, toggle/butterfly anchors elsewhere |
 | **Material** | PETG (resists creep under sustained load in a warm garage) |
-| **Print notes** | Stand the part with the **peg pointing up**; no supports. 4+ walls, 30 %+ infill — it is structural. |
+| **Print notes** | **Wall plate flat on the bed, back (wall) face down** — a big 58 × 96 mm footprint that won't lift. The peg then prints horizontally ~49 mm up, so enable **supports under the peg/collar only**. 4+ walls, 30 %+ infill — it is structural. |
 
 ---
 
