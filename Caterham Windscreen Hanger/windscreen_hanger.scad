@@ -19,7 +19,9 @@ plate_max_t = 12.7;  // stanchion plate thickness the peg passes through (<1/2")
 
 /* ================================ PEG ===================================== */
 peg_d      = 16;     // peg diameter — drops freely through the 76 mm cutout
-peg_len    = 24;     // peg length past the web (spans stanchion plate + collar)
+peg_over   = 10;     // clear peg PAST the plate edge, before the collar — the
+                     // stanchion seats here, beyond the plate, resting on the
+                     // wall rather than the proud baseplate. peg_len derived below.
 collar_d   = 24;     // collar diameter — the lip the cutout edge climbs over
 collar_len = 5;      // collar length at the peg's outer end
 
@@ -48,8 +50,9 @@ hole_dz = 36;        // hole offset from plate centre, Z
 $fn = 72;
 
 /* =============================== DERIVED ================================== */
-peg_y = plate_t + arm_reach;   // peg axis distance out from the wall face
-eps   = 0.6;                    // overshoot for clean CGAL cuts
+peg_y   = plate_t + arm_reach;      // peg axis distance out from the wall face
+peg_len = plate_w/2 + peg_over + collar_len;  // plate edge + clear seat + collar
+eps     = 0.6;                       // overshoot for clean CGAL cuts
 
 /* =============================== MODULES ================================== */
 
