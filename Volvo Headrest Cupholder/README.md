@@ -19,6 +19,6 @@ floor.
 | --- | --- |
 | **Source** | [`cupholder.scad`](cupholder.scad) |
 | **STLs** | [`cupholder_back.stl`](cupholder_back.stl) · [`cupholder_front.stl`](cupholder_front.stl) |
-| **Hardware** | 2× M4 nuts + 2× M4×20 bolts |
+| **Hardware** | 2× M4 nyloc nuts + 2× M4×20 bolts (pocket sized for a ~5 mm nyloc) |
 | **Material** | ASA (preferred, for heat/creep) or PETG — never PLA |
 | **Print notes** | ≥5 wall loops (perimeters), 40–50% sparse infill. Print the back half cups-up with supports under the arm/web. The Ø22 arm has ample margin, so layer orientation isn't critical — just don't stand the arm up vertically. |

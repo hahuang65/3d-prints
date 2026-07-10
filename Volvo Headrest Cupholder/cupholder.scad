@@ -43,8 +43,10 @@ joint_floor = 3;      // solid floor the tongue bottoms onto (mm)
 scr_free  = 4.4;      // bolt clearance hole
 bolt_head = 8.0;      // head counterbore (rear face)
 head_depth= 4.0;
-nut_af    = 7.2;      // M4 nut across-flats + clearance (mm)
-nut_th    = 3.4;      // M4 nut thickness + clearance (mm)
+nut_af    = 7.2;      // M4 nut across-flats + clearance (mm) — nyloc = same AF
+nut_th    = 5.2;      // M4 NYLOC thickness (~5.0 measured) + 0.2 fit tolerance —
+                      // taller than a std hex nut (nylon collar). FDM pockets
+                      // print a hair small, so the 0.2 keeps it snug, not sloppy
 nut_y     = 6.0;      // nut position inside the front boss (mm, +Y)
 
 /* ----------------------------- CLAMP ------------------------------------- */
