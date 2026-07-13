@@ -19,9 +19,9 @@ plate_max_t = 12.7;  // stanchion plate thickness the peg passes through (<1/2")
 
 /* ================================ PEG ===================================== */
 peg_d      = 16;     // peg diameter — drops freely through the 76 mm cutout
-peg_over   = 10;     // clear peg PAST the plate edge, before the collar — the
-                     // stanchion seats here, beyond the plate, resting on the
-                     // wall rather than the proud baseplate. peg_len derived below.
+peg_over   = 18;     // clear peg PAST the plate edge, before the collar — enough
+                     // room for the stanchion to slide fully onto the peg without
+                     // fouling the proud baseplate. peg_len derived below.
 collar_d   = 24;     // collar diameter — the lip the cutout edge climbs over
 collar_len = 5;      // collar length at the peg's outer end
 

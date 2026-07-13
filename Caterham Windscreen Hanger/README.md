@@ -30,10 +30,10 @@ for why it hangs this way.
 
 | Dimension | Value |
 |-----------|-------|
-| Overall | 73 × 61 × 96 mm (W × D × H) |
+| Overall | 81 × 61 × 96 mm (W × D × H) |
 | Wall plate | 58 × 96 mm, 7 mm thick, 8 mm corner radius |
-| Peg | Ø16 mm; sticks 10 mm clear past the plate edge (seats the stanchion), then the collar |
-| Collar (lip) | Ø24 mm × 5 mm, beyond the 10 mm seat |
+| Peg | Ø16 mm; sticks 18 mm clear past the plate edge (stanchion slides fully on), then the collar |
+| Collar (lip) | Ø24 mm × 5 mm, beyond the 18 mm seat |
 | Peg standoff | collar's near rim stands 30 mm clear of the plate face (peg axis ~49 mm off the wall) |
 | Fixing holes | 4 × countersunk — Ø4.5 mm shank, Ø9 mm head |
 
