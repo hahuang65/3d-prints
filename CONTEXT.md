@@ -1,7 +1,7 @@
 # Context — Domain Glossary
 
-Shared vocabulary for this repo of 3D-printable automotive accessories. One term
-per entry, definitions only — no implementation details or specs.
+Shared vocabulary for this repo of 3D-printable products. One term per entry,
+definitions only — no implementation details or specs.
 
 ## Caterham Seven
 Lightweight British roadster. The user runs a **420R S3**; "S3" is the

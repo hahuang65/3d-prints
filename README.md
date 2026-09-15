@@ -50,6 +50,19 @@ one.*
 
 ---
 
+## Number 3 Cookie Cutter
+
+![Number 3 Cookie Cutter](Number%203%20Cookie%20Cutter/render.png)
+
+*A one-piece cutter for a 3.5-inch-tall number 3 in the rounded, playful Fredoka Bold typeface, with a clear opening, top press rim, and tapered cutting edge.*
+
+→ [`Number 3 Cookie Cutter/`](Number%203%20Cookie%20Cutter/) ·
+[`number_3_cookie_cutter.scad`](Number%203%20Cookie%20Cutter/number_3_cookie_cutter.scad) ·
+[`number_3_cookie_cutter.stl`](Number%203%20Cookie%20Cutter/number_3_cookie_cutter.stl) ·
+[README](Number%203%20Cookie%20Cutter/README.md)
+
+---
+
 ## Sponge Holder
 
 ![Sponge Holder](Sponge%20Holder/render.png)
